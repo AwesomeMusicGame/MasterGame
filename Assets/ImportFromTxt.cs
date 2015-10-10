@@ -8,19 +8,18 @@ public class ImportFromTxt : MonoBehaviour
 {
 
     private Kolajnice kolajniceScript;
+    private string filename = @".\Assets\Stone Magnet.txt";
 
 	// Use this for initialization
 	void Start () {
         kolajniceScript = GameObject.FindGameObjectWithTag("KolajniceTag").GetComponent<Kolajnice>();
+
+        ImportFromFile();
+        kolajniceScript.SpawnMap();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKey(KeyCode.L))
-        {
-            ImportFromFile();
-            kolajniceScript.spawnMapTemp = true;
-        }
 	}
 
     public void ImportFromFile()
@@ -29,7 +28,7 @@ public class ImportFromTxt : MonoBehaviour
         try
         {
             //need to be fixed 
-            StreamReader reader = new StreamReader(@"D:\Hearthstone\MasterGame\Assets\Stone Magnet.txt");
+            StreamReader reader = new StreamReader(filename);
             string input = reader.ReadToEnd();
             if (input != string.Empty)
             {
@@ -39,10 +38,10 @@ public class ImportFromTxt : MonoBehaviour
                     float tempFloat;
                     float.TryParse(part, out tempFloat);
                     tempList.Add(tempFloat);
-                    Debug.Log(tempFloat + " parsed from: " + part);
+//                    Debug.Log(tempFloat + " parsed from: " + part);
                 }
-                kolajniceScript.WriteAllBeats();
-                kolajniceScript.SetBeats(tempList);
+//                kolajniceScript.DebugWriteAllBeats();
+                kolajniceScript.Beats = tempList;
                 reader.Close();
             }
             else

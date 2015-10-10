@@ -4,65 +4,91 @@ using System.Collections.Generic;
 
 public class Kolajnice : MonoBehaviour {
 
+    public GameObject debugBeat;
     public GameObject kockaPrefab;
     public GameObject prekazkaPrefab;
     public float sideDistance = 5;
-    public bool spawnMapTemp = false;
+    public float countInTime = 5;
+    public float stretchingFactor = 5;
 
-    private List<float> beats = new List<float>();
-
-	// Use this for initialization
-	void Start () {
-               
-	}
-
-    public List<float> GetBeats()
+    private List<float> _beats = new List<float>();
+    public List<float> Beats
     {
-        return beats;
-    }
-
-    public void SetBeats(List<float> tempList)
-    {
-        beats = tempList;
-    }
-
-    public void WriteAllBeats()
-    {
-        foreach (float Beat in beats)
+        get
         {
-            Debug.Log(Beat + "\n");
+            return _beats;
+        }
+        set
+        {
+            _beats = value;
         }
     }
+
+
+	// Use this for initialization
+    void Start() {
+        this.transform.position = new Vector3(stretchingFactor * countInTime, 0, -sideDistance);
+	}
 
     // Update is called once per frame
     void Update () {
-        if (spawnMapTemp == true)
-        {
-            SpawnMap();
-            spawnMapTemp = false;
-        }
-        this.transform.position = new Vector3(0, 0, -sideDistance);
+        this.transform.position = new Vector3(-(Time.time - countInTime) * stretchingFactor, 0, -sideDistance);
 	}
 
-    void SpawnMap()
+    public void SpawnMap()
     {
-        float beatlenght = 0.5f;
-        int lastrow = -1;
-        // for (float i = 0; i < 300; i += beatlenght)
-        for (int i = 0; i < beats.Count; i++)
+        //some inits
+        int lastRow = 1;
+        int row = lastRow;
+        float beatLenght = 0;
+        float lastBeat = 0;
+        float modifiedBeat;
+
+        // generate startinging line 
+        GameObject tempStart = (GameObject)Instantiate(kockaPrefab, new Vector3(lastBeat, 0, sideDistance * row), Quaternion.identity);
+        tempStart.transform.parent = this.transform;
+        tempStart.GetComponent<Stretching>().lenght = -100;
+
+        foreach (float currentBeat in Beats)
         {
-            float positionOffset = (kockaPrefab.transform.localScale.z/2);
-            int row = Random.Range(0, 3);
-            if (lastrow == row)
+            //DEBUG LINES
+            //Instantiate(debugBeat, new Vector3(currentBeat, 0, 0), debugBeat.transform.localRotation);
+
+            modifiedBeat = currentBeat * stretchingFactor;
+
+            beatLenght = modifiedBeat - lastBeat;
+            if (beatLenght <= 0)
             {
-                 GameObject tempPrekazka = (GameObject)Instantiate(prekazkaPrefab, new Vector3(i, 0, sideDistance * row + positionOffset), Quaternion.identity);
-                 tempPrekazka.transform.parent = this.transform;
+                beatLenght = 100; // level end, one long ass lane
             }
-            lastrow = row;
-            //beats.Add(i);
-            GameObject temp = (GameObject)Instantiate(kockaPrefab, new Vector3(i, 0, sideDistance * row + positionOffset), Quaternion.identity);
-            temp.GetComponent<Stretching>().lenght = beatlenght;
+
+            do
+            {
+                row = Random.Range(0, 3);
+            } while (row == lastRow);
+            lastRow = row;
+
+            //if (lastrow == row)
+            //{
+            //    GameObject tempPrekazka = (GameObject)Instantiate(prekazkaPrefab, new Vector3(currentBeat, 0, sideDistance * row + positionOffset), Quaternion.identity);
+            //    tempPrekazka.transform.parent = this.transform;
+            //}
+
+            GameObject temp = (GameObject)Instantiate(kockaPrefab, new Vector3(lastBeat, 0, sideDistance * row), Quaternion.identity);
             temp.transform.parent = this.transform;
+            temp.GetComponent<Stretching>().lenght = beatLenght;
+
+            lastBeat = modifiedBeat;
+        }
+    }
+
+
+    // Debug help functions
+    public void DebugWriteAllBeats()
+    {
+        foreach (float Beat in _beats)
+        {
+            Debug.Log(Beat + "\n");
         }
     }
 }
