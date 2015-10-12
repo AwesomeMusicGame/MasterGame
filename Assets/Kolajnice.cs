@@ -11,6 +11,9 @@ public class Kolajnice : MonoBehaviour {
     public float countInTime = 5;
     public float stretchingFactor = 5;
 
+    //temp
+    public bool tellMeFirstBeat = false;
+
     private List<float> _beats = new List<float>();
     public List<float> Beats
     {
@@ -79,6 +82,7 @@ public class Kolajnice : MonoBehaviour {
             temp.GetComponent<Stretching>().lenght = beatLenght;
 
             lastBeat = modifiedBeat;
+            tellMeFirstBeat = true;
         }
     }
 
