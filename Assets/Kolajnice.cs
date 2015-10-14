@@ -11,9 +11,6 @@ public class Kolajnice : MonoBehaviour {
     public float countInTime = 5;
     public float stretchingFactor = 5;
 
-    //temp
-    public bool tellMeFirstBeat = false;
-
     private List<float> _beats = new List<float>();
     public List<float> Beats
     {
@@ -51,6 +48,7 @@ public class Kolajnice : MonoBehaviour {
         GameObject tempStart = (GameObject)Instantiate(kockaPrefab, new Vector3(lastBeat, 0, sideDistance * row), Quaternion.identity);
         tempStart.transform.parent = this.transform;
         tempStart.GetComponent<Stretching>().lenght = -100;
+        bool FirstLineDone = false;
 
         foreach (float currentBeat in Beats)
         {
@@ -65,24 +63,24 @@ public class Kolajnice : MonoBehaviour {
                 beatLenght = 100; // level end, one long ass lane
             }
 
-            do
+            if (FirstLineDone)
             {
-                row = Random.Range(0, 3);
-            } while (row == lastRow);
-            lastRow = row;
-
-            //if (lastrow == row)
-            //{
-            //    GameObject tempPrekazka = (GameObject)Instantiate(prekazkaPrefab, new Vector3(currentBeat, 0, sideDistance * row + positionOffset), Quaternion.identity);
-            //    tempPrekazka.transform.parent = this.transform;
-            //}
+                do
+                {
+                    row = Random.Range(0, 3);
+                } while (row == lastRow);
+                lastRow = row;
+            }
+            else
+            {
+                FirstLineDone = true;
+            }
 
             GameObject temp = (GameObject)Instantiate(kockaPrefab, new Vector3(lastBeat, 0, sideDistance * row), Quaternion.identity);
             temp.transform.parent = this.transform;
             temp.GetComponent<Stretching>().lenght = beatLenght;
 
             lastBeat = modifiedBeat;
-            tellMeFirstBeat = true;
         }
     }
 
