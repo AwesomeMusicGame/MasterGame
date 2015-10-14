@@ -21,7 +21,7 @@ public class MusicPlayer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
        // timePassed = Time.timeSinceLevelLoad;
-        if (!audio.isPlaying && /*Time.time >= 4.5f*/ kolajnice.tellMeFirstBeat == true)
+        if (!audio.isPlaying && Time.time >= kolajnice.countInTime)
         {
             audio.Play();
         }
