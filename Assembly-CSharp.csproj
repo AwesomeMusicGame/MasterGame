@@ -48,8 +48,9 @@
      <Compile Include="Assets\Destroy.cs" />
      <Compile Include="Assets\ImportFromTxt.cs" />
      <Compile Include="Assets\Kolajnice.cs" />
-     <Compile Include="Assets\Menu.cs" />
-     <Compile Include="Assets\MenuManager.cs" />
+     <Compile Include="Assets\MAINMENU materials\scripts\ButtonPressed.cs" />
+     <Compile Include="Assets\MAINMENU materials\scripts\Menu.cs" />
+     <Compile Include="Assets\MAINMENU materials\scripts\MenuManager.cs" />
      <Compile Include="Assets\Movement.cs" />
      <Compile Include="Assets\MusicPlayer.cs" />
      <Compile Include="Assets\Stretching.cs" />
