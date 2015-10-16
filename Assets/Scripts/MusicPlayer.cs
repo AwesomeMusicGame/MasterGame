@@ -4,8 +4,6 @@ using System.Collections;
 [RequireComponent(typeof(AudioSource))]
 public class MusicPlayer : MonoBehaviour {
 
-    public AudioClip clip;
-
     private Kolajnice kolajnice;
 
     //[SerializeField]float timePassed = 0;

@@ -84,6 +84,15 @@ public class Kolajnice : MonoBehaviour {
         }
     }
 
+    public float getCurrentBeatLength(float time) {
+        int nextBeatIndex = Beats.FindIndex(x => x > time);
+        float nextBeat = Beats[nextBeatIndex+1];
+        float lastBeat = Beats[nextBeatIndex];
+
+        Debug.Log(nextBeat + " - " + lastBeat);
+
+        return (nextBeat - lastBeat);
+    }
 
     // Debug help functions
     public void DebugWriteAllBeats()
