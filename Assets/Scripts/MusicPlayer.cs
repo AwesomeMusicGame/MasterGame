@@ -5,6 +5,7 @@ using System.Collections;
 public class MusicPlayer : MonoBehaviour {
 
     private Kolajnice kolajnice;
+    private GameObject character;
 
     public AudioClip song1;
     public AudioClip song2;
@@ -17,6 +18,7 @@ public class MusicPlayer : MonoBehaviour {
     // Use this for initialization
     void Start() {
         kolajnice = GameObject.FindGameObjectWithTag("KolajniceTag").GetComponent<Kolajnice>();
+        character = GameObject.FindGameObjectWithTag("Player");
         audio = GetComponent<AudioSource>();
         pickedSong = kolajnice.MasterPickedSong;
         switch (pickedSong)
@@ -38,6 +40,19 @@ public class MusicPlayer : MonoBehaviour {
         if (!audio.isPlaying && Time.time >= kolajnice.countInTime)
         {
             audio.Play();
+        }
+        if (character.transform.localPosition.y < 0)
+        {
+            audio.pitch = Mathf.Lerp(1, 0, character.transform.localPosition.y / -8);
+            if (character.transform.localPosition.y < -8)
+            {
+                kolajnice.GameOver = true;
+                audio.Stop();
+            }
+        }
+        else
+        {
+            audio.pitch = 1;
         }
 	}
 }

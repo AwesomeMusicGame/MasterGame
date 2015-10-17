@@ -36,6 +36,7 @@ public class Movement : MonoBehaviour {
 
     private void DoInput()
     {
+        if (kolajnice.GameOver) return;
         // Im getting no input (buttons were released), allow the input to do stuff again
         if ((Input.GetAxis("Horizontal") == 0) && !canMove)
         {
@@ -60,7 +61,6 @@ public class Movement : MonoBehaviour {
             transform.Rotate(transform.right, -animationRotation, Space.Self);
             //disable input
             canMove = false;
-            GetComponent<Rigidbody>().useGravity = false;
         }
         //input left
         if ((Input.GetAxis("Horizontal") < 0) && canMove)
@@ -81,16 +81,23 @@ public class Movement : MonoBehaviour {
             transform.Rotate(transform.right, animationRotation, Space.Self);
             //disable input
             canMove = false;
-            GetComponent<Rigidbody>().useGravity = false;
         }
         //held fly key
         if (Input.GetButton("Fly"))
         {
+            GetComponent<Rigidbody>().useGravity = false;
             this.transform.position = new Vector3(this.transform.position.x, 2,this.transform.position.z);
+        }
+        else
+        {
+            if (!GetComponent<Rigidbody>().useGravity)
+                GetComponent<Rigidbody>().useGravity = true;
         }
     }
     private void DoAnimations()
     {
+        if (kolajnice.GameOver) return;
+
         //if not at the position I should be, do animation, used for movement
         if (transform.localPosition.z != targetPosition.z)
         {
@@ -112,7 +119,6 @@ public class Movement : MonoBehaviour {
         {
             //rotate me back
             transform.rotation = Quaternion.identity;
-            GetComponent<Rigidbody>().useGravity = true;
         }
     }
 }

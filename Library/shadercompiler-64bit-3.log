@@ -1,11 +1,95 @@
 Base path: C:/Program Files/Unity/Editor/Data
-Pipe name: \\.\pipe\UnityShaderCompiler-64bit-3-7300
+Pipe name: \\.\pipe\UnityShaderCompiler-64bit-3-4712
 Cmd: getPlatforms
 Cmd: compileSnippet
-  api=8 type=0 insize=1738 outsize=2982 kw=SOFTPARTICLES_ON pd=UNITY_NO_SCREENSPACE_SHADOWS UNITY_NO_LINEAR_COLORSPACE ok=1
+  api=1 type=0 insize=982 outsize=1485 kw=DIRECTIONAL SHADOWS_SCREEN LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF VERTEXLIGHT_ON _ALPHAPREMULTIPLY_ON pd= ok=1
 Cmd: compileSnippet
-  api=8 type=1 insize=1738 outsize=1389 kw=SOFTPARTICLES_OFF pd=UNITY_NO_SCREENSPACE_SHADOWS UNITY_NO_LINEAR_COLORSPACE ok=1
-Unhandled exception: Readfile from pipe failed. GLE=Presmerovanie bolo skončené.
+  api=1 type=1 insize=982 outsize=3869 kw=DIRECTIONAL SHADOWS_SCREEN LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF _ALPHAPREMULTIPLY_ON pd= ok=1
+Cmd: compileSnippet
+  api=1 type=0 insize=938 outsize=937 kw=SPOT SHADOWS_OFF _ALPHAPREMULTIPLY_ON pd= ok=1
+Cmd: compileSnippet
+  api=1 type=0 insize=938 outsize=923 kw=POINT_COOKIE SHADOWS_OFF _ALPHAPREMULTIPLY_ON pd= ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=938 outsize=4792 kw=DIRECTIONAL_COOKIE SHADOWS_OFF _ALPHAPREMULTIPLY_ON pd= ok=1
+Cmd: compileSnippet
+  api=1 type=0 insize=938 outsize=1073 kw=DIRECTIONAL_COOKIE SHADOWS_SCREEN _ALPHAPREMULTIPLY_ON pd= ok=1
+Cmd: compileSnippet
+  api=1 type=0 insize=938 outsize=965 kw=POINT_COOKIE SHADOWS_CUBE _ALPHAPREMULTIPLY_ON pd= ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=938 outsize=5206 kw=SPOT SHADOWS_DEPTH SHADOWS_SOFT SHADOWS_NATIVE _ALPHAPREMULTIPLY_ON pd= ok=1
+Cmd: compileSnippet
+  api=1 type=1 insize=938 outsize=2358 kw=SPOT SHADOWS_OFF _ALPHAPREMULTIPLY_ON pd= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=938 outsize=6303 kw=POINT_COOKIE SHADOWS_OFF _ALPHAPREMULTIPLY_ON pd= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=938 outsize=7205 kw=SPOT SHADOWS_DEPTH SHADOWS_NATIVE _ALPHAPREMULTIPLY_ON pd= ok=1
+Cmd: compileSnippet
+  api=1 type=1 insize=938 outsize=2439 kw=POINT SHADOWS_CUBE _ALPHAPREMULTIPLY_ON pd= ok=1
+Cmd: compileSnippet
+  api=1 type=1 insize=938 outsize=2733 kw=SPOT SHADOWS_DEPTH SHADOWS_SOFT SHADOWS_NATIVE _ALPHAPREMULTIPLY_ON pd= ok=1
+Cmd: compileSnippet
+  api=1 type=1 insize=938 outsize=2735 kw=POINT_COOKIE SHADOWS_CUBE SHADOWS_SOFT _ALPHAPREMULTIPLY_ON pd= ok=1
+Cmd: compileSnippet
+  api=1 type=0 insize=751 outsize=262 kw=SHADOWS_CUBE _ALPHAPREMULTIPLY_ON pd= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=751 outsize=1436 kw=SHADOWS_CUBE _ALPHAPREMULTIPLY_ON pd= ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=1152 outsize=4703 kw=LIGHTMAP_OFF DIRLIGHTMAP_COMBINED DYNAMICLIGHTMAP_OFF _ALPHAPREMULTIPLY_ON pd= ok=1
+Cmd: compileSnippet
+  api=1 type=0 insize=1152 outsize=842 kw=LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF UNITY_HDR_ON _ALPHAPREMULTIPLY_ON pd= ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=1152 outsize=4703 kw=LIGHTMAP_OFF DIRLIGHTMAP_COMBINED DYNAMICLIGHTMAP_OFF UNITY_HDR_ON _ALPHAPREMULTIPLY_ON pd= ok=1
+Cmd: compileSnippet
+  api=1 type=1 insize=1152 outsize=712 kw=LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF _ALPHAPREMULTIPLY_ON pd= ok=1
+Cmd: compileSnippet
+  api=1 type=1 insize=1152 outsize=712 kw=LIGHTMAP_OFF DIRLIGHTMAP_SEPARATE DYNAMICLIGHTMAP_OFF _ALPHAPREMULTIPLY_ON pd= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=1152 outsize=2826 kw=LIGHTMAP_OFF DIRLIGHTMAP_COMBINED DYNAMICLIGHTMAP_OFF UNITY_HDR_ON _ALPHAPREMULTIPLY_ON pd= ok=1
+Cmd: compileSnippet
+  api=8 type=0 insize=886 outsize=6346 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF _ALPHAPREMULTIPLY_ON pd=UNITY_NO_SCREENSPACE_SHADOWS UNITY_NO_LINEAR_COLORSPACE ok=1
+Cmd: compileSnippet
+  api=8 type=0 insize=886 outsize=8653 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF VERTEXLIGHT_ON _ALPHAPREMULTIPLY_ON pd=UNITY_NO_SCREENSPACE_SHADOWS UNITY_NO_LINEAR_COLORSPACE ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=886 outsize=4077 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF _ALPHAPREMULTIPLY_ON pd= ok=1
+Cmd: compileSnippet
+  api=1 type=0 insize=816 outsize=803 kw=DIRECTIONAL SHADOWS_OFF _ALPHAPREMULTIPLY_ON pd= ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=816 outsize=4256 kw=DIRECTIONAL SHADOWS_OFF _ALPHAPREMULTIPLY_ON pd= ok=1
+Cmd: compileSnippet
+  api=8 type=0 insize=816 outsize=7410 kw=SPOT SHADOWS_OFF _ALPHAPREMULTIPLY_ON pd=UNITY_NO_SCREENSPACE_SHADOWS UNITY_NO_LINEAR_COLORSPACE ok=1
+Cmd: compileSnippet
+  api=8 type=0 insize=816 outsize=7231 kw=DIRECTIONAL_COOKIE SHADOWS_OFF _ALPHAPREMULTIPLY_ON pd=UNITY_NO_SCREENSPACE_SHADOWS UNITY_NO_LINEAR_COLORSPACE ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=816 outsize=4613 kw=DIRECTIONAL SHADOWS_SCREEN _ALPHAPREMULTIPLY_ON pd= ok=1
+Cmd: compileSnippet
+  api=1 type=0 insize=816 outsize=915 kw=POINT SHADOWS_CUBE _ALPHAPREMULTIPLY_ON pd= ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=816 outsize=5247 kw=POINT_COOKIE SHADOWS_CUBE _ALPHAPREMULTIPLY_ON pd= ok=1
+Cmd: compileSnippet
+  api=8 type=0 insize=816 outsize=7264 kw=DIRECTIONAL SHADOWS_SCREEN SHADOWS_NATIVE _ALPHAPREMULTIPLY_ON pd=UNITY_NO_SCREENSPACE_SHADOWS UNITY_NO_LINEAR_COLORSPACE ok=1
+Cmd: compileSnippet
+  api=1 type=1 insize=816 outsize=837 kw=POINT SHADOWS_OFF _ALPHAPREMULTIPLY_ON pd= ok=1
+Cmd: compileSnippet
+  api=8 type=1 insize=816 outsize=3989 kw=DIRECTIONAL SHADOWS_OFF _ALPHAPREMULTIPLY_ON pd=UNITY_NO_SCREENSPACE_SHADOWS UNITY_NO_LINEAR_COLORSPACE ok=1
+Cmd: compileSnippet
+  api=8 type=1 insize=816 outsize=4745 kw=POINT_COOKIE SHADOWS_OFF _ALPHAPREMULTIPLY_ON pd=UNITY_NO_SCREENSPACE_SHADOWS UNITY_NO_LINEAR_COLORSPACE ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=816 outsize=3971 kw=SPOT SHADOWS_DEPTH SHADOWS_NATIVE _ALPHAPREMULTIPLY_ON pd= ok=1
+Cmd: compileSnippet
+  api=1 type=1 insize=816 outsize=860 kw=DIRECTIONAL_COOKIE SHADOWS_SCREEN _ALPHAPREMULTIPLY_ON pd= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=816 outsize=3638 kw=POINT SHADOWS_CUBE _ALPHAPREMULTIPLY_ON pd= ok=1
+Cmd: compileSnippet
+  api=8 type=1 insize=816 outsize=5818 kw=POINT_COOKIE SHADOWS_CUBE _ALPHAPREMULTIPLY_ON pd=UNITY_NO_SCREENSPACE_SHADOWS UNITY_NO_LINEAR_COLORSPACE ok=1
+Cmd: compileSnippet
+  api=1 type=0 insize=600 outsize=216 kw=SHADOWS_CUBE _ALPHAPREMULTIPLY_ON pd= ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=600 outsize=1639 kw=SHADOWS_CUBE _ALPHAPREMULTIPLY_ON pd= ok=1
+Cmd: compileSnippet
+  api=1 type=1 insize=600 outsize=159 kw=SHADOWS_DEPTH _ALPHAPREMULTIPLY_ON pd= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=600 outsize=1038 kw=SHADOWS_CUBE _ALPHAPREMULTIPLY_ON pd= ok=1
+Unhandled exception: Readfile from pipe failed. GLE=The pipe has been ended.
 
 
 Quitting shader compiler process

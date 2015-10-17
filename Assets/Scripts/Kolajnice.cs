@@ -12,6 +12,7 @@ public class Kolajnice : MonoBehaviour {
     public float countInTime = 5;
     public float stretchingFactor = 5;
     public int MasterPickedSong = 1;
+    public bool GameOver = false;
 
     private List<float> _beats = new List<float>();
     public List<float> Beats
@@ -34,7 +35,10 @@ public class Kolajnice : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        this.transform.position = new Vector3(-(Time.time - countInTime) * stretchingFactor, 0, -sideDistance);
+        if (!GameOver)
+        {
+            this.transform.position = new Vector3(-(Time.time - countInTime) * stretchingFactor, 0, -sideDistance);
+        }
 	}
 
     public void SpawnMap()
