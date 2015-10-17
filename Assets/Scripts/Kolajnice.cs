@@ -5,11 +5,13 @@ using System.Collections.Generic;
 public class Kolajnice : MonoBehaviour {
 
     public GameObject debugBeat;
+    public GameObject TextPrefab;
     public GameObject kockaPrefab;
     public GameObject prekazkaPrefab;
     public float sideDistance = 5;
     public float countInTime = 5;
     public float stretchingFactor = 5;
+    public int MasterPickedSong = 1;
 
     private List<float> _beats = new List<float>();
     public List<float> Beats
@@ -47,8 +49,16 @@ public class Kolajnice : MonoBehaviour {
         // generate startinging line 
         GameObject tempStart = (GameObject)Instantiate(kockaPrefab, new Vector3(lastBeat, 0, sideDistance * row), Quaternion.identity);
         tempStart.transform.parent = this.transform;
-        tempStart.GetComponent<Stretching>().lenght = -100;
+        tempStart.GetComponent<Stretching>().lenght = - countInTime * stretchingFactor;
         bool FirstLineDone = false;
+
+        //generate count in numbers
+        for (int i = 0; i < countInTime; i++)
+        {
+            GameObject tempText = (GameObject) Instantiate(TextPrefab, new Vector3(-i * stretchingFactor, 0, sideDistance), Quaternion.AngleAxis(90, transform.up));
+            tempText.transform.parent = this.transform;
+            tempText.GetComponent<TextMesh>().text = i.ToString();
+        }
 
         foreach (float currentBeat in Beats)
         {
@@ -76,20 +86,37 @@ public class Kolajnice : MonoBehaviour {
                 FirstLineDone = true;
             }
 
+            ////DEBUG!!!START
+            //for (int i = 0; i < 3; i++)
+            //{
+            //    row = i;
+            ////DEBUG!!!END
             GameObject temp = (GameObject)Instantiate(kockaPrefab, new Vector3(lastBeat, 0, sideDistance * row), Quaternion.identity);
             temp.transform.parent = this.transform;
             temp.GetComponent<Stretching>().lenght = beatLenght;
+            ////DEBUG!!!START
+            //}
+            ////DEBUG!!!END
 
             lastBeat = modifiedBeat;
         }
     }
 
     public float getCurrentBeatLength(float time) {
-        int nextBeatIndex = Beats.FindIndex(x => x > time);
-        float nextBeat = Beats[nextBeatIndex+1];
-        float lastBeat = Beats[nextBeatIndex];
 
-        Debug.Log(nextBeat + " - " + lastBeat);
+        int nextBeatIndex = Beats.FindIndex(x => x > time);
+        float nextBeat, lastBeat;
+
+        if (Beats.Count > (nextBeatIndex - 1))
+        {
+            nextBeat = Beats[nextBeatIndex + 1];
+            lastBeat = Beats[nextBeatIndex];
+        }
+        else
+        {
+            nextBeat = Beats[nextBeatIndex];
+            lastBeat = Beats[nextBeatIndex - 1];
+        }
 
         return (nextBeat - lastBeat);
     }

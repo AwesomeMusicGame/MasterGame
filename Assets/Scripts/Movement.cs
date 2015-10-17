@@ -14,6 +14,7 @@ public class Movement : MonoBehaviour {
     private float startTime = 0;
     private float animSpeedMultipiler = 6;
     private float animationRotation = 20;
+    private bool teleport = false;
 
     private Kolajnice kolajnice;
 
@@ -27,12 +28,20 @@ public class Movement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        DoInput();
+
+        DoAnimations();
+	}
+
+    private void DoInput()
+    {
         // Im getting no input (buttons were released), allow the input to do stuff again
         if ((Input.GetAxis("Horizontal") == 0) && !canMove)
         {
             canMove = true;
         }
-        //input left
+        //input right
         if ((Input.GetAxis("Horizontal") > 0) && canMove)
         {
             //calculate positions
@@ -42,7 +51,7 @@ public class Movement : MonoBehaviour {
             if (currentPosition < -1)
             {
                 currentPosition = 1;
-                //spawn new capsule, destroy self
+                teleport = true;
             }
             //calculate time stuff
             animLength = kolajnice.getCurrentBeatLength(Time.time) / animSpeedMultipiler;
@@ -51,8 +60,9 @@ public class Movement : MonoBehaviour {
             transform.Rotate(transform.right, -animationRotation, Space.Self);
             //disable input
             canMove = false;
+            GetComponent<Rigidbody>().useGravity = false;
         }
-        //input right
+        //input left
         if ((Input.GetAxis("Horizontal") < 0) && canMove)
         {
             //calculate positions
@@ -62,7 +72,7 @@ public class Movement : MonoBehaviour {
             if (currentPosition > 1)
             {
                 currentPosition = -1;
-                //spawn new capsule, destroy self
+                teleport = true;
             }
             //calculate time stuff
             animLength = kolajnice.getCurrentBeatLength(Time.time) / animSpeedMultipiler;
@@ -71,20 +81,38 @@ public class Movement : MonoBehaviour {
             transform.Rotate(transform.right, animationRotation, Space.Self);
             //disable input
             canMove = false;
+            GetComponent<Rigidbody>().useGravity = false;
         }
-
-        //if not at the position I should be, do animation
-        if (transform.localPosition.z != targetPosition.z) 
+        //held fly key
+        if (Input.GetButton("Fly"))
+        {
+            this.transform.position = new Vector3(this.transform.position.x, 2,this.transform.position.z);
+        }
+    }
+    private void DoAnimations()
+    {
+        //if not at the position I should be, do animation, used for movement
+        if (transform.localPosition.z != targetPosition.z)
         {
             //lerp between where i should be and where I am by time
             float animLerp = (Time.time - startTime) / animLength;
+
+            //if jumping through edge of the screen teleport
+            if (teleport && animLerp >= 0.5)
+            {
+                startPosition = new Vector3(startPosition.x, startPosition.y, 2 * jumpDistance * currentPosition);
+                targetPosition = new Vector3(startPosition.x, startPosition.y, jumpDistance * currentPosition);
+                teleport = false;
+            }
+
             transform.localPosition = Vector3.Lerp(startPosition, targetPosition, animLerp);
         }
-        //if I am where i should be but I'm still rotated
+        //if I am where i should be but I'm still rotated set me straight, used after movement ends
         else if (transform.rotation != Quaternion.identity)
         {
             //rotate me back
             transform.rotation = Quaternion.identity;
+            GetComponent<Rigidbody>().useGravity = true;
         }
-	}
+    }
 }
