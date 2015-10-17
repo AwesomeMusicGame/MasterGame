@@ -125,6 +125,12 @@ public class Kolajnice : MonoBehaviour {
         return (nextBeat - lastBeat);
     }
 
+	/*//choosing lvl from main menu
+	public void ChooseLevel(int level)
+	{
+		return level;
+	}*/
+
     // Debug help functions
     public void DebugWriteAllBeats()
     {

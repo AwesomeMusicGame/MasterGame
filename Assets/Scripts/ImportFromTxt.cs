@@ -13,7 +13,7 @@ public class ImportFromTxt : MonoBehaviour
     private string path3 = @".\Assets\Songs\Poor-o.txt";
     private string filename;
 
-    public int pickedSong = 1;
+    public int pickedSong = 2;
 
 	// Use this for initialization
 	void Start () {
@@ -80,7 +80,5 @@ public class ImportFromTxt : MonoBehaviour
         {
             Debug.Log("No lvl data loaded from the file...file is missing\n" + e.ToString());
         }
-
-
     }
 }
