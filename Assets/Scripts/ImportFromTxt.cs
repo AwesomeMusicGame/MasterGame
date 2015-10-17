@@ -8,11 +8,30 @@ public class ImportFromTxt : MonoBehaviour
 {
 
     private Kolajnice kolajniceScript;
-    private string filename = @".\Assets\Stone Magnet.txt";
+    private string path1 = @".\Assets\Songs\ThinkDude.txt";
+    private string path2 = @".\Assets\Songs\Tea Blaster.txt";
+    private string path3 = @".\Assets\Songs\Poor-o.txt";
+    private string filename;
+
+    public int pickedSong = 1;
 
 	// Use this for initialization
 	void Start () {
         kolajniceScript = GameObject.FindGameObjectWithTag("KolajniceTag").GetComponent<Kolajnice>();
+
+        pickedSong = kolajniceScript.MasterPickedSong;
+        switch (pickedSong)
+        {
+            case 1:
+                filename = path1;
+                break;
+            case 2:
+                filename = path2;
+                break;
+            case 3:
+                filename = path3;
+                break;
+        }
 
         ImportFromFile();
         kolajniceScript.SpawnMap();
@@ -48,6 +67,10 @@ public class ImportFromTxt : MonoBehaviour
             {
                 Debug.Log("No lvl data loaded from the file...string is empty");
             }
+        }
+        catch (ArgumentNullException e)
+        {
+            Debug.Log("Null filename.\n" + e.ToString());
         }
         catch (NullReferenceException e)
         {

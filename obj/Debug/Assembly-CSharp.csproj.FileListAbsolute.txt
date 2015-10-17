@@ -20,7 +20,3 @@ C:\temp\xvana\FinalProjekt\Temp\bin\Debug\UnityEngine.Networking.xml
 C:\temp\xvana\FinalProjekt\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
 C:\temp\xvana\FinalProjekt\obj\Debug\Assembly-CSharp.dll
 C:\temp\xvana\FinalProjekt\obj\Debug\Assembly-CSharp.pdb
-C:\temp\xvana\FinalProjekt\Temp\bin\Debug\UnityEngine.Advertisements.dll
-C:\temp\xvana\FinalProjekt\Temp\bin\Debug\UnityEngine.Analytics.dll
-C:\temp\xvana\FinalProjekt\Temp\bin\Debug\UnityEngine.Advertisements.xml
-C:\temp\xvana\FinalProjekt\Temp\bin\Debug\UnityEngine.Analytics.xml
