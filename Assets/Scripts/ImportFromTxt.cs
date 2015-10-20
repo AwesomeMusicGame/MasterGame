@@ -13,7 +13,7 @@ public class ImportFromTxt : MonoBehaviour
     private string path3 = @".\Assets\Songs\Poor-o.txt";
     private string filename;
 
-    public int pickedSong = 2;
+    private int pickedSong = 2;
 
 	// Use this for initialization
 	void Start () {

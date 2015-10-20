@@ -11,7 +11,7 @@ public class MusicPlayer : MonoBehaviour {
     public AudioClip song2;
     public AudioClip song3;
 
-    public int pickedSong = 1;
+    private int pickedSong = 1;
 
     private AudioSource audio;
 

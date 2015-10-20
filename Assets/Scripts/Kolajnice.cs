@@ -4,10 +4,9 @@ using System.Collections.Generic;
 
 public class Kolajnice : MonoBehaviour {
 
-    public GameObject debugBeat;
     public GameObject TextPrefab;
     public GameObject kockaPrefab;
-    public GameObject prekazkaPrefab;
+    public GameObject[] prekazkaPrefab = new GameObject[2];
     public float sideDistance = 5;
     public float countInTime = 5;
     public float stretchingFactor = 5;
@@ -79,10 +78,19 @@ public class Kolajnice : MonoBehaviour {
 
             if (FirstLineDone)
             {
-                do
+                //do
+                //{
+                //    row = Random.Range(0, 3);
+                //} while (row == lastRow);
+
+                row = Random.Range(0, 3);
+                if (row == lastRow)
                 {
-                    row = Random.Range(0, 3);
-                } while (row == lastRow);
+                    int prekazkaType = Random.Range(0, 2);
+
+                    GameObject prek = (GameObject)Instantiate(prekazkaPrefab[prekazkaType], new Vector3(lastBeat, 0, sideDistance * row), Quaternion.identity);
+					prek.transform.parent = this.transform;
+                }
                 lastRow = row;
             }
             else
@@ -90,18 +98,10 @@ public class Kolajnice : MonoBehaviour {
                 FirstLineDone = true;
             }
 
-            ////DEBUG!!!START
-            //for (int i = 0; i < 3; i++)
-            //{
-            //    row = i;
-            ////DEBUG!!!END
             GameObject temp = (GameObject)Instantiate(kockaPrefab, new Vector3(lastBeat, 0, sideDistance * row), Quaternion.identity);
             temp.transform.parent = this.transform;
             temp.GetComponent<Stretching>().lenght = beatLenght;
-            ////DEBUG!!!START
-            //}
-            ////DEBUG!!!END
-
+            
             lastBeat = modifiedBeat;
         }
     }

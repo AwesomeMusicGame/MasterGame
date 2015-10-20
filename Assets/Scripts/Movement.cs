@@ -21,6 +21,7 @@ public class Movement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         kolajnice = GameObject.FindGameObjectWithTag("KolajniceTag").GetComponent<Kolajnice>();
+
         jumpDistance = kolajnice.sideDistance;
         targetPosition = transform.localPosition;
         startPosition = targetPosition;
@@ -38,7 +39,7 @@ public class Movement : MonoBehaviour {
     {
         if (kolajnice.GameOver) return;
         // Im getting no input (buttons were released), allow the input to do stuff again
-        if ((Input.GetAxis("Horizontal") == 0) && !canMove)
+		if ((Input.GetAxis("Horizontal") == 0) && (Input.GetAxis("Vertical") == 0) && !canMove)
         {
             canMove = true;
         }
@@ -94,6 +95,7 @@ public class Movement : MonoBehaviour {
                 GetComponent<Rigidbody>().useGravity = true;
         }
     }
+
     private void DoAnimations()
     {
         if (kolajnice.GameOver) return;
