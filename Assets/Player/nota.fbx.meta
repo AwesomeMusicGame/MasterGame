@@ -1,0 +1,157 @@
+fileFormatVersion: 2
+guid: 5985f3a6ad176f14b8a7fbfc2061e66d
+timeCreated: 1445161982
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Capsule
+    100002: Capsule_1
+    100004: Capsule_2
+    100006: leva_ruka
+    100008: levaa
+    100010: //RootNode
+    100012: Null
+    100014: Null_2
+    100016: Null_3
+    100018: Null_4
+    100020: Null_5
+    100022: Null_6
+    100024: Null_7
+    100026: oboci
+    100028: ocasek
+    100030: oko_prave
+    100032: "o\u010Di"
+    100034: prava_ruka
+    100036: pravaa
+    100038: Sphere_1
+    100040: spodek
+    100042: telo
+    100044: telo_2
+    100046: telo_3
+    100048: usta
+    100050: usta_2
+    100052: zub
+    400000: Capsule
+    400002: Capsule_1
+    400004: Capsule_2
+    400006: leva_ruka
+    400008: levaa
+    400010: //RootNode
+    400012: Null
+    400014: Null_2
+    400016: Null_3
+    400018: Null_4
+    400020: Null_5
+    400022: Null_6
+    400024: Null_7
+    400026: oboci
+    400028: ocasek
+    400030: oko_prave
+    400032: "o\u010Di"
+    400034: prava_ruka
+    400036: pravaa
+    400038: Sphere_1
+    400040: spodek
+    400042: telo
+    400044: telo_2
+    400046: telo_3
+    400048: usta
+    400050: usta_2
+    400052: zub
+    2300000: Capsule
+    2300002: Capsule_1
+    2300004: levaa
+    2300006: ocasek
+    2300008: pravaa
+    2300010: Sphere_1
+    2300012: spodek
+    2300014: telo_2
+    2300016: usta
+    2300018: zub
+    3300000: Capsule
+    3300002: Capsule_1
+    3300004: levaa
+    3300006: ocasek
+    3300008: pravaa
+    3300010: Sphere_1
+    3300012: spodek
+    3300014: telo_2
+    3300016: usta
+    3300018: zub
+    4300000: zub
+    4300002: Capsule
+    4300004: telo_2
+    4300006: usta
+    4300008: pravaa
+    4300010: levaa
+    4300012: Capsule_1
+    4300014: Sphere_1
+    4300016: ocasek
+    4300018: spodek
+    7400000: C4D Animation Take
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
