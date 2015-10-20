@@ -1,0 +1,14 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\bakalariss\Assets\scripts\Variables.cs">
+    <Files>
+      <File FileName="..\..\bakalariss\Assets\scripts\VariableDatabase.cs" Line="7" Column="52" />
+      <File FileName="..\..\bakalariss\Assets\scripts\Variables.cs" Line="15" Column="53" />
+      <File FileName="..\..\bakalariss\Assets\scripts\s_sphere_move.cs" Line="104" Column="46" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
