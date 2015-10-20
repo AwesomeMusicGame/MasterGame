@@ -1,10 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\bakalariss\Assets\scripts\Variables.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MusicPlayer.cs">
     <Files>
-      <File FileName="..\..\bakalariss\Assets\scripts\VariableDatabase.cs" Line="7" Column="52" />
-      <File FileName="..\..\bakalariss\Assets\scripts\Variables.cs" Line="15" Column="53" />
-      <File FileName="..\..\bakalariss\Assets\scripts\s_sphere_move.cs" Line="104" Column="46" />
+      <File FileName="Assets\LoadingLevelParameter.cs" Line="6" Column="2" />
+      <File FileName="Assets\Scripts\Kolajnice.cs" Line="38" Column="24" />
+      <File FileName="Assets\Scripts\MusicPlayer.cs" Line="18" Column="33" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

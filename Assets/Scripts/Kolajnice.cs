@@ -14,6 +14,9 @@ public class Kolajnice : MonoBehaviour {
     public int MasterPickedSong = 1;
     public bool GameOver = false;
 
+	private LoadingLevelParameter parameterScript;
+	private MusicPlayer musicPlayer;
+
     private List<float> _beats = new List<float>();
     public List<float> Beats
     {
@@ -30,6 +33,17 @@ public class Kolajnice : MonoBehaviour {
 
 	// Use this for initialization
     void Start() {
+
+		if (GameObject.FindGameObjectWithTag ("LoadLevelParameterTag") == null) {
+			Debug.LogError ("LoadLevelParameter object not found...");
+		} else {
+			parameterScript = GameObject.FindGameObjectWithTag ("LoadLevelParameterTag").GetComponent<LoadingLevelParameter> ();
+			MasterPickedSong = parameterScript.getLoadLevelParameter();
+			Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+		}
+		musicPlayer = GameObject.FindGameObjectWithTag ("MusicPlayer").GetComponent<MusicPlayer> ();
+		musicPlayer.pickedSong = MasterPickedSong;
+
         this.transform.position = new Vector3(stretchingFactor * countInTime, 0, -sideDistance);
 	}
 
