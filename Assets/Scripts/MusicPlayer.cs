@@ -11,7 +11,7 @@ public class MusicPlayer : MonoBehaviour {
     public AudioClip song2;
     public AudioClip song3;
 
-    public int pickedSong = 1;
+    public int pickedSong = 3;
 
     private AudioSource audio;
 
@@ -20,7 +20,7 @@ public class MusicPlayer : MonoBehaviour {
         kolajnice = GameObject.FindGameObjectWithTag("KolajniceTag").GetComponent<Kolajnice>();
         character = GameObject.FindGameObjectWithTag("Player");
         audio = GetComponent<AudioSource>();
-        pickedSong = kolajnice.MasterPickedSong;
+        //pickedSong = kolajnice.MasterPickedSong;
         switch (pickedSong)
         {
             case 1:
