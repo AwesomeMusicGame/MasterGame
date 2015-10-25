@@ -7,14 +7,32 @@ public class GUIupdater : MonoBehaviour {
     private Kolajnice kolajnice;
     public Text timeIn; 
 
-	// Use this for initialization
+	public Color startColor;
+	public Color endColor;
+
+	private float t = 0; //lerp variable
+
     void Start()
     {
         kolajnice = GameObject.FindGameObjectWithTag("KolajniceTag").GetComponent<Kolajnice>();
+		timeIn.color = startColor;
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
+
+		//changing stuff bc 1 min. till the end
+		if (((Time.time - kolajnice.countInTime)) > ((kolajnice.Beats [kolajnice.Beats.Count - 2] - 60))) {
+			//...tbd
+		}
+
+		//changing color in time
+		timeIn.color = Color.Lerp(startColor, endColor, t);
+		if (t < 1){ 
+			t += Time.deltaTime/(kolajnice.Beats [kolajnice.Beats.Count - 2]);
+		}
+
+		//print (((Time.time - kolajnice.countInTime)));
+		//print ((kolajnice.Beats [kolajnice.Beats.Count - 2]));
         timeIn.text = FormatTime(Time.time - kolajnice.countInTime) + " / " + FormatTime(kolajnice.Beats[kolajnice.Beats.Count - 2]);
 	}
 

@@ -64,7 +64,69 @@ ModelImporter:
     animationScaleError: .5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: C4D Animation Take
+      takeName: C4D Animation Take
+      firstFrame: 0
+      lastFrame: 90
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Kosti_tela
+        weight: 1
+      - path: Kosti_tela/Joint_1_3
+        weight: 1
+      - path: Kosti_tela/Joint_1_3/Joint_2_2
+        weight: 1
+      - path: Kosti_tela/Joint_1_3/Joint_2_2/Joint_3
+        weight: 1
+      - path: Kosti_tela/Joint_1_3/Joint_2_2/Joint_3/Joint_4
+        weight: 1
+      - path: Kosti_tela/Joint_1_3/Joint_2_2/Joint_3/Joint_4/Joint_5
+        weight: 1
+      - path: Kosti_tela/Joint_1_3/Joint_2_2/Joint_3/Joint_4/Joint_5/Joint_6
+        weight: 1
+      - path: Kosti_tela/Joint_1_3/Joint_2_2/Joint_3/Joint_4/Joint_5/Joint_6/Joint_7
+        weight: 1
+      - path: Kosti_tela/leva_ruka
+        weight: 1
+      - path: Kosti_tela/leva_ruka/Joint
+        weight: 1
+      - path: Kosti_tela/leva_ruka/Joint/Joint_1
+        weight: 1
+      - path: Kosti_tela/prava_ruka
+        weight: 1
+      - path: Kosti_tela/prava_ruka/Joint_2
+        weight: 1
+      - path: Kosti_tela/prava_ruka/Joint_2/Joint_1_2
+        weight: 1
+      - path: nota
+        weight: 1
+      - path: zub_1
+        weight: 1
+      - path: zub_1/Null
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
     isReadable: 1
   meshes:
     lODScreenPercentages: []
