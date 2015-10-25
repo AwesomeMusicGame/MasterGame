@@ -26,8 +26,5 @@ public class MenuManager : MonoBehaviour {
         Application.Quit();
     }
 
-    public void LoadLevel(int level)
-    {
-        Application.LoadLevel(level);
-    }
+   
 }
