@@ -17,15 +17,6 @@ public class LoadingLevelParameter : MonoBehaviour {
 	public void setLoadLevelParameter(int temp)
 	{
 		loadLevelParamerer = temp;
-	}
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+		Application.LoadLevel(1);
 	}
 }
