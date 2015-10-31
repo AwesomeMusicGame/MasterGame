@@ -4,10 +4,9 @@ using System.Collections.Generic;
 
 public class Kolajnice : MonoBehaviour {
 
-    public GameObject debugBeat;
     public GameObject TextPrefab;
     public GameObject kockaPrefab;
-    public GameObject prekazkaPrefab;
+    public GameObject[] prekazkaPrefab;
     public float sideDistance = 5;
     public float countInTime = 5;
     public float stretchingFactor = 5;
@@ -34,12 +33,13 @@ public class Kolajnice : MonoBehaviour {
 	// Use this for initialization
     void Start() {
 
+        //Time.timeScale = 0.2F; /// DEBUG THIS BREAKS THE SHIT I THINK
+
 		if (GameObject.FindGameObjectWithTag ("LoadLevelParameterTag") == null) {
 			Debug.LogError ("LoadLevelParameter object not found...");
 		} else {
 			parameterScript = GameObject.FindGameObjectWithTag ("LoadLevelParameterTag").GetComponent<LoadingLevelParameter> ();
 			MasterPickedSong = parameterScript.getLoadLevelParameter();
-			Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 		}
 		musicPlayer = GameObject.FindGameObjectWithTag ("MusicPlayer").GetComponent<MusicPlayer> ();
 		musicPlayer.pickedSong = MasterPickedSong;
@@ -93,10 +93,15 @@ public class Kolajnice : MonoBehaviour {
 
             if (FirstLineDone)
             {
-                do
+                row = Random.Range(0, 3);
+
+                if (row == lastRow)
                 {
-                    row = Random.Range(0, 3);
-                } while (row == lastRow);
+                    int prekazka = Random.Range(0, prekazkaPrefab.Length);
+                    GameObject tempPrekazka = (GameObject)Instantiate(prekazkaPrefab[prekazka], new Vector3(lastBeat, 0, sideDistance * row), Quaternion.identity);
+                    tempPrekazka.transform.parent = this.transform;
+                }
+
                 lastRow = row;
             }
             else
@@ -104,17 +109,9 @@ public class Kolajnice : MonoBehaviour {
                 FirstLineDone = true;
             }
 
-            ////DEBUG!!!START
-            //for (int i = 0; i < 3; i++)
-            //{
-            //    row = i;
-            ////DEBUG!!!END
             GameObject temp = (GameObject)Instantiate(kockaPrefab, new Vector3(lastBeat, 0, sideDistance * row), Quaternion.identity);
             temp.transform.parent = this.transform;
             temp.GetComponent<Stretching>().lenght = beatLenght;
-            ////DEBUG!!!START
-            //}
-            ////DEBUG!!!END
 
             lastBeat = modifiedBeat;
         }

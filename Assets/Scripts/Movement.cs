@@ -38,7 +38,7 @@ public class Movement : MonoBehaviour {
     {
         if (kolajnice.GameOver) return;
         // Im getting no input (buttons were released), allow the input to do stuff again
-        if ((Input.GetAxis("Horizontal") == 0) && !canMove)
+        if ((Input.GetAxis("Horizontal") == 0) && (Input.GetAxis("Vertical") == 0) && !canMove)
         {
             canMove = true;
         }
@@ -82,6 +82,13 @@ public class Movement : MonoBehaviour {
             //disable input
             canMove = false;
         }
+        //input up
+        if ((Input.GetAxis("Vertical") > 0) && canMove)
+        {
+            this.GetComponentInChildren<WallPuncherScript>().Punch();
+        }
+
+
         //held fly key
         if (Input.GetButton("Fly"))
         {

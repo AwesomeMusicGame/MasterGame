@@ -20,7 +20,8 @@ public class Vizualizer : MonoBehaviour {
 			{
 				float angle = i * Mathf.PI * 1 / numberOfObjects;
 				Vector3 pos = new Vector3(Mathf.Sin(angle)+0.2f, 0, Mathf.Cos(angle)*Mathf.PI/8) * radius;
-				Instantiate(prefab, pos, Quaternion.identity);
+				GameObject temp = Instantiate(prefab, pos, Quaternion.identity) as GameObject;
+                temp.transform.parent = this.transform;
 			}
 		}
 		cubes = GameObject.FindGameObjectsWithTag("Cubes");

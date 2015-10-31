@@ -47,12 +47,15 @@ public class MusicPlayer : MonoBehaviour {
             if (character.transform.localPosition.y < -8)
             {
                 kolajnice.GameOver = true;
-                audio.Stop();
             }
         }
         else
         {
             audio.pitch = 1;
+        }
+        if (kolajnice.GameOver)
+        {
+            audio.Stop();
         }
 	}
 }
