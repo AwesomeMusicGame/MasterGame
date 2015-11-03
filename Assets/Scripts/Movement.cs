@@ -15,11 +15,13 @@ public class Movement : MonoBehaviour {
     private float animSpeedMultipiler = 6;
     private float animationRotation = 20;
     private bool teleport = false;
+    private PlayerAnimation animator;
 
     private Kolajnice kolajnice;
 
 	// Use this for initialization
 	void Start () {
+        animator = GetComponentInChildren<PlayerAnimation>();
         kolajnice = GameObject.FindGameObjectWithTag("KolajniceTag").GetComponent<Kolajnice>();
         jumpDistance = kolajnice.sideDistance;
         targetPosition = transform.localPosition;
@@ -61,6 +63,9 @@ public class Movement : MonoBehaviour {
             transform.Rotate(transform.right, -animationRotation, Space.Self);
             //disable input
             canMove = false;
+
+            //start skeletal animation
+            animator.StartJumpAnimation();
         }
         //input left
         if ((Input.GetAxis("Horizontal") < 0) && canMove)
@@ -81,11 +86,32 @@ public class Movement : MonoBehaviour {
             transform.Rotate(transform.right, animationRotation, Space.Self);
             //disable input
             canMove = false;
+
+            //start skeletal animation
+            animator.StartJumpAnimation();
         }
         //input up
         if ((Input.GetAxis("Vertical") > 0) && canMove)
         {
             this.GetComponentInChildren<WallPuncherScript>().Punch();
+
+            //start skeletal animation
+            animator.StartPunchAnimation();
+
+            //disable input
+            canMove = false;
+        }
+        //input down
+        if ((Input.GetAxis("Vertical") < 0) && canMove) 
+        {
+            GetComponent<CapsuleCollider>().center = new Vector3(0, -0.5f, 0);
+            GetComponent<CapsuleCollider>().height = 1;
+
+            //start skeletal animation
+            animator.StartSlideAnimation();
+
+            //disable input
+            canMove = false;
         }
 
 
@@ -127,5 +153,11 @@ public class Movement : MonoBehaviour {
             //rotate me back
             transform.rotation = Quaternion.identity;
         }
+    }
+
+    public void SlideEnd()
+    {
+        GetComponent<CapsuleCollider>().center = new Vector3(0, 0, 0);
+        GetComponent<CapsuleCollider>().height = 2;
     }
 }

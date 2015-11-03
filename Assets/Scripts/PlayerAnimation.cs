@@ -11,36 +11,25 @@ public class PlayerAnimation : MonoBehaviour {
 	// Update is called once per frame
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            GetComponent<Animator>().SetBool("jump", true);
-        }
+    }
 
-        if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow))
-        {
-            GetComponent<Animator>().SetBool("jump", false);
-        }
+    public void StartJumpAnimation()
+    {
+        GetComponent<Animator>().SetTrigger("JumpTrigger");
+    }
 
+    public void StartPunchAnimation()
+    {
+        GetComponent<Animator>().SetTrigger("PunchTrigger");
+    }
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            GetComponent<Animator>().SetBool("punch", true);
-        }     
+    public void StartSlideAnimation()
+    {
+        GetComponent<Animator>().SetTrigger("SlideTrigger");
+    }
 
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            GetComponent<Animator>().SetBool("punch", false);
-        }
-
-        if (Input.GetKeyUp(KeyCode.DownArrow))
-        {
-            GetComponent<Animator>().SetBool("bend", false);
-        }
-
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            GetComponent<Animator>().SetBool("bend", true);
-        }
-
+    public void StartDeadAnimation()
+    {
+        GetComponent<Animator>().SetTrigger("DeadTrigger");
     }
 }

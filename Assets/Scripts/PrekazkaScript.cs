@@ -30,7 +30,8 @@ public class PrekazkaScript : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
-            //kolajnice.GameOver = true;
+            kolajnice.GameOver = true;
+            other.gameObject.GetComponentInChildren<PlayerAnimation>().StartDeadAnimation();
         }
     }
 }
