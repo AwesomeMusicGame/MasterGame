@@ -9,7 +9,7 @@ public class Vizualizer : MonoBehaviour {
 	public GameObject prefab;
 	public int numberOfObjects = 20;
 	public float radius = 5f;
-	public GameObject[] cubes;
+	private GameObject[] cubes;
 	
 	void Start() {
 		for (int i = 0; i < numberOfObjects; i++) {

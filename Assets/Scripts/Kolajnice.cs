@@ -98,7 +98,7 @@ public class Kolajnice : MonoBehaviour {
                 if (row == lastRow)
                 {
                     int prekazka = Random.Range(0, prekazkaPrefab.Length);
-                    GameObject tempPrekazka = (GameObject)Instantiate(prekazkaPrefab[prekazka], new Vector3(lastBeat, 0, sideDistance * row), Quaternion.identity);
+                    GameObject tempPrekazka = (GameObject) Instantiate(prekazkaPrefab[prekazka], new Vector3(lastBeat, 0, sideDistance * row), Quaternion.identity);
                     tempPrekazka.transform.parent = this.transform;
                 }
 
