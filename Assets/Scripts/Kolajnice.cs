@@ -16,6 +16,8 @@ public class Kolajnice : MonoBehaviour {
 	private LoadingLevelParameter parameterScript;
 	private MusicPlayer musicPlayer;
 
+	private bool isReadyToPlay = false;
+
     private List<float> _beats = new List<float>();
     public List<float> Beats
     {
@@ -45,14 +47,16 @@ public class Kolajnice : MonoBehaviour {
 		musicPlayer.pickedSong = MasterPickedSong;
 
         this.transform.position = new Vector3(stretchingFactor * countInTime, 0, -sideDistance);
+		isReadyToPlay = true;
 	}
 
     // Update is called once per frame
     void Update () {
-        if (!GameOver)
-        {
-            this.transform.position = new Vector3(-(Time.time - countInTime) * stretchingFactor, 0, -sideDistance);
-        }
+		if (isReadyToPlay) {
+			if (!GameOver) {
+				this.transform.position = new Vector3 (-(Time.time - countInTime) * stretchingFactor, 0, -sideDistance);
+			}
+		}
 	}
 
     public void SpawnMap()
