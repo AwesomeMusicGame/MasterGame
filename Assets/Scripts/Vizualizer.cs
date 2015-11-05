@@ -9,7 +9,7 @@ public class Vizualizer : MonoBehaviour {
 	public GameObject prefab;
 	public int numberOfObjects = 20;
 	public float radius = 5f;
-	public GameObject[] cubes;
+	private GameObject[] cubes;
 	
 	void Start() {
 		for (int i = 0; i < numberOfObjects; i++) {
@@ -20,7 +20,8 @@ public class Vizualizer : MonoBehaviour {
 			{
 				float angle = i * Mathf.PI * 1 / numberOfObjects;
 				Vector3 pos = new Vector3(Mathf.Sin(angle)+0.2f, 0, Mathf.Cos(angle)*Mathf.PI/8) * radius;
-				Instantiate(prefab, pos, Quaternion.identity);
+				GameObject temp = Instantiate(prefab, pos, Quaternion.identity) as GameObject;
+                temp.transform.parent = this.transform;
 			}
 		}
 		cubes = GameObject.FindGameObjectsWithTag("Cubes");
