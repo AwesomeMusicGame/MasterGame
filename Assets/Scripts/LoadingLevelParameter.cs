@@ -4,8 +4,10 @@ using System.Collections;
 public class LoadingLevelParameter : MonoBehaviour {
 
 	private int loadLevelParamerer = 0;
+	public int tempp;
 
 	void Awake() {
+		tempp = loadLevelParamerer;
 		DontDestroyOnLoad(transform.gameObject);
 	}
 
@@ -14,15 +16,15 @@ public class LoadingLevelParameter : MonoBehaviour {
 		return loadLevelParamerer;
 	}
 
-	public void setLoadLevelParameter(int temp)
+	public void setLoadLevelParameter(int level)
 	{
-		loadLevelParamerer = temp;
+		tempp = level;
+		loadLevelParamerer = level;
 		Application.LoadLevel(1);
 	}
 
-	public void getParameterInGameOverMenu()
+	public void retryLevel()
 	{
-		int temp = getLoadLevelParameter ();
-		Application.LoadLevel (temp);
+		Application.LoadLevel (1);
 	}
 }

@@ -4,11 +4,14 @@ using System.Collections;
 public class MenuManager : MonoBehaviour {
 
     public Menu currentMenu;
+	private Transform llptrans;
 
     public void Start()
     {
+		llptrans = GameObject.FindGameObjectWithTag ("LoadLevelParameterTag").transform;
         ShowMenu(currentMenu);
-    }
+		
+	}
 
     public void ShowMenu(Menu menu)
     {
@@ -28,6 +31,7 @@ public class MenuManager : MonoBehaviour {
 
 	public void LoadMainMenu()
 	{
+		Destroy (llptrans.gameObject);
 		Application.LoadLevel (0);
 	}
 }

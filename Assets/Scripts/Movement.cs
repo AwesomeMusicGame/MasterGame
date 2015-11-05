@@ -129,7 +129,9 @@ public class Movement : MonoBehaviour {
     }
     private void DoAnimations()
     {
-        if (kolajnice.GameOver) return;
+		if (kolajnice.GameOver) {
+			Application.LoadLevel(2);
+		};
 
         //if not at the position I should be, do animation, used for movement
         if (transform.localPosition.z != targetPosition.z)
