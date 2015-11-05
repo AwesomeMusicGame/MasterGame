@@ -19,4 +19,10 @@ public class LoadingLevelParameter : MonoBehaviour {
 		loadLevelParamerer = temp;
 		Application.LoadLevel(1);
 	}
+
+	public void getParameterInGameOverMenu()
+	{
+		int temp = getLoadLevelParameter ();
+		Application.LoadLevel (temp);
+	}
 }

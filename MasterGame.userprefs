@@ -1,9 +1,14 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\bakalariss\Assets\scripts\s_sphere_move.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\MAINMENU materials\scripts\MenuManager.cs">
     <Files>
-      <File FileName="..\..\bakalariss\Assets\scripts\s_sphere_move.cs" Line="468" Column="12" />
-      <File FileName="..\..\bakalariss\Assets\scripts\s_sphere_frontCollisionCube.cs" Line="44" Column="5" />
+      <File FileName="Assets\ScenePicker.cs" Line="11" Column="1" />
+      <File FileName="Assets\Scripts\Kolajnice.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Vizualizer.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\WallPuncherScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PlayerAnimation.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Movement.cs" Line="1" Column="1" />
+      <File FileName="Assets\MAINMENU materials\scripts\MenuManager.cs" Line="31" Column="29" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

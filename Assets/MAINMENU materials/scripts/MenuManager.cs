@@ -25,4 +25,9 @@ public class MenuManager : MonoBehaviour {
     {
         Application.Quit();
     }
+
+	public void LoadMainMenu()
+	{
+		Application.LoadLevel (0);
+	}
 }
