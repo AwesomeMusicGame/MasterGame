@@ -13,6 +13,11 @@ public class PlayerAnimation : MonoBehaviour {
     {
     }
 
+    public void SetLenght(float beatLength)
+    {
+        GetComponent<Animator>().SetFloat("BeatLenght", beatLength);
+    }
+
     public void StartJumpAnimation()
     {
         GetComponent<Animator>().SetTrigger("JumpTrigger");
