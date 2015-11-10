@@ -57,8 +57,8 @@ public class Movement : MonoBehaviour {
                 teleport = true;
             }
             //calculate time stuff
-            animLength = kolajnice.getCurrentBeatLength(Time.time) / animSpeedMultipiler;
-            startTime = Time.time;
+            animLength = kolajnice.getCurrentBeatLength(kolajnice.elapsedTime) / animSpeedMultipiler;
+            startTime = kolajnice.elapsedTime;
             //rotate in the right direction
             transform.Rotate(transform.right, -animationRotation, Space.Self);
             //disable input
@@ -80,8 +80,8 @@ public class Movement : MonoBehaviour {
                 teleport = true;
             }
             //calculate time stuff
-            animLength = kolajnice.getCurrentBeatLength(Time.time) / animSpeedMultipiler;
-            startTime = Time.time;
+            animLength = kolajnice.getCurrentBeatLength(kolajnice.elapsedTime) / animSpeedMultipiler;
+            startTime = kolajnice.elapsedTime;
             //rotate in the right direction
             transform.Rotate(transform.right, animationRotation, Space.Self);
             //disable input
@@ -129,15 +129,13 @@ public class Movement : MonoBehaviour {
     }
     private void DoAnimations()
     {
-		if (kolajnice.GameOver) {
-			Application.LoadLevel(2);
-		};
+        animator.SetLenght(kolajnice.getCurrentBeatLength(kolajnice.elapsedTime) * kolajnice.stretchingFactor / 2);
 
         //if not at the position I should be, do animation, used for movement
         if (transform.localPosition.z != targetPosition.z)
         {
             //lerp between where i should be and where I am by time
-            float animLerp = (Time.time - startTime) / animLength;
+            float animLerp = (kolajnice.elapsedTime - startTime) / animLength;
 
             //if jumping through edge of the screen teleport
             if (teleport && animLerp >= 0.5)

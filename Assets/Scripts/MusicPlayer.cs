@@ -41,7 +41,7 @@ public class MusicPlayer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (!audio.isPlaying && Time.time >= kolajnice.countInTime)
+        if (!audio.isPlaying && kolajnice.elapsedTime >= kolajnice.countInTime)
         {
             audio.Play();
         }
@@ -53,11 +53,16 @@ public class MusicPlayer : MonoBehaviour {
                 kolajnice.GameOver = true;
             }
         }
+        else if (kolajnice.GameOver)
+        {
+            if (audio.pitch > 0)
+                audio.pitch -= Time.deltaTime / 2;
+        }
         else
         {
             audio.pitch = 1;
         }
-        if (kolajnice.GameOver)
+        if (audio.pitch <= 0)
         {
             audio.Stop();
         }

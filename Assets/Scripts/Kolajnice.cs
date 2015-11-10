@@ -12,6 +12,9 @@ public class Kolajnice : MonoBehaviour {
     public float stretchingFactor = 5;
     public int MasterPickedSong = 1;
     public bool GameOver = false;
+    public float elapsedTime = 0;
+    private float startTime = 0;
+    public float gameOverWait = 5;
 
 	private LoadingLevelParameter parameterScript;
 	private MusicPlayer musicPlayer;
@@ -47,16 +50,29 @@ public class Kolajnice : MonoBehaviour {
 		musicPlayer.pickedSong = MasterPickedSong;
 
         this.transform.position = new Vector3(stretchingFactor * countInTime, 0, -sideDistance);
-		isReadyToPlay = true;
+		elapsedTime = 0;
+        startTime = Time.time;
 	}
 
     // Update is called once per frame
     void Update () {
-		if (isReadyToPlay) {
-			if (!GameOver) {
-				this.transform.position = new Vector3 (-(Time.time - countInTime) * stretchingFactor, 0, -sideDistance);
-			}
-		}
+
+        if (startTime != 0)
+        {
+            elapsedTime = Time.time - startTime;
+
+            if (!GameOver)
+            {
+                this.transform.position = new Vector3(-(elapsedTime - countInTime) * stretchingFactor, 0, -sideDistance);
+            }
+            else
+            {
+                if (gameOverWait > 0)
+                    gameOverWait -= Time.deltaTime;
+                else
+                    Application.LoadLevel(2);
+            }
+        } 
 	}
 
     public void SpawnMap()
