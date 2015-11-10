@@ -11,6 +11,7 @@ public class ImportFromTxt : MonoBehaviour
     private string path1 = @".\Assets\Songs\ThinkDude.txt";
     private string path2 = @".\Assets\Songs\Tea Blaster.txt";
     private string path3 = @".\Assets\Songs\Poor-o.txt";
+    public string customPath;
     private string filename;
 
     public int pickedSong = 2;
@@ -30,6 +31,9 @@ public class ImportFromTxt : MonoBehaviour
                 break;
             case 3:
                 filename = path3;
+                break;
+            case 0:
+                filename = customPath;
                 break;
         }
 
