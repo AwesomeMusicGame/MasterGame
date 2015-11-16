@@ -14,7 +14,7 @@ public class WallPuncherScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        GetComponent<BoxCollider>().size = new Vector3(kolajnice.getCurrentBeatLength(Time.time) * kolajnice.stretchingFactor, 2, 1);
+        GetComponent<BoxCollider>().size = new Vector3(kolajnice.getCurrentBeatLength(kolajnice.elapsedTime) * kolajnice.stretchingFactor, 2, 1);
 	}
 
     void OnTriggerEnter(Collider other)

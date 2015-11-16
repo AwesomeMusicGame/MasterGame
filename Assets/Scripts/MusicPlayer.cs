@@ -10,6 +10,7 @@ public class MusicPlayer : MonoBehaviour {
     public AudioClip song1;
     public AudioClip song2;
     public AudioClip song3;
+    public AudioClip customSong;
 
     public int pickedSong = 3;
 
@@ -32,12 +33,15 @@ public class MusicPlayer : MonoBehaviour {
             case 3:
                 audio.clip = song3;
                 break;
+            case 0:
+                audio.clip = customSong;
+                break;
         }
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (!audio.isPlaying && Time.time >= kolajnice.countInTime)
+        if (!audio.isPlaying && kolajnice.elapsedTime >= kolajnice.countInTime)
         {
             audio.Play();
         }
@@ -49,11 +53,16 @@ public class MusicPlayer : MonoBehaviour {
                 kolajnice.GameOver = true;
             }
         }
+        else if (kolajnice.GameOver)
+        {
+            if (audio.pitch > 0)
+                audio.pitch -= Time.deltaTime / 2;
+        }
         else
         {
             audio.pitch = 1;
         }
-        if (kolajnice.GameOver)
+        if (audio.pitch <= 0)
         {
             audio.Stop();
         }
