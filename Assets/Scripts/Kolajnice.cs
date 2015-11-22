@@ -38,9 +38,10 @@ public class Kolajnice : MonoBehaviour {
 	// Use this for initialization
     void Start() {
 
-        //Time.timeScale = 0.2F; /// DEBUG THIS BREAKS THE SHIT I THINK
+        //Time.timeScale = 0.4F; /// DEBUG THIS BREAKS THE SHIT I THINK
 
 		if (GameObject.FindGameObjectWithTag ("LoadLevelParameterTag") == null) {
+			MasterPickedSong = 0;
 			Debug.LogError ("LoadLevelParameter object not found...");
 		} else {
 			parameterScript = GameObject.FindGameObjectWithTag ("LoadLevelParameterTag").GetComponent<LoadingLevelParameter> ();

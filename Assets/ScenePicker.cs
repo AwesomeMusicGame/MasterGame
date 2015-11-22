@@ -7,7 +7,7 @@ public class ScenePicker : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        int Pick = Random.Range(0, SceneVariants.Length);
+		int Pick = 0;//Random.Range(0, SceneVariants.Length);
         GameObject temp = Instantiate(SceneVariants[Pick], transform.position, Quaternion.identity) as GameObject;
         temp.transform.parent = this.transform;
 	}
