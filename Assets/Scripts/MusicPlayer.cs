@@ -38,6 +38,15 @@ public class MusicPlayer : MonoBehaviour {
                 break;
         }
     }
+
+	public float getPlayTime() {
+		
+		if (audio.isPlaying) {
+			return audio.time; 
+		} else {
+			return 0;
+		}
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -66,5 +75,7 @@ public class MusicPlayer : MonoBehaviour {
         {
             audio.Stop();
         }
+
+		Debug.Log (audio.time + " = " + (kolajnice.elapsedTime - kolajnice.countInTime));
 	}
 }
