@@ -1,9 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\bakalariss\Assets\scripts\s_sphere_move2.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ImportFromTxt.cs">
     <Files>
-      <File FileName="..\..\bakalariss\Assets\scripts\s_sphere_move.cs" Line="158" Column="31" />
-      <File FileName="..\..\bakalariss\Assets\scripts\s_sphere_move2.cs" Line="223" Column="43" />
+      <File FileName="Assets\Scripts\LoadingLevelParameter.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ImportFromTxt.cs" Line="14" Column="9" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
