@@ -75,7 +75,5 @@ public class MusicPlayer : MonoBehaviour {
         {
             audio.Stop();
         }
-
-		Debug.Log (audio.time + " = " + (kolajnice.elapsedTime - kolajnice.countInTime));
 	}
 }

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Vizualizer : MonoBehaviour, SceneItemInterface {
+public class Vizualizer : MonoBehaviour, ISceneItem {
 	
 	
 	public Material podlahaMaterial { get {

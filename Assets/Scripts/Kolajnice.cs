@@ -39,7 +39,6 @@ public class Kolajnice : MonoBehaviour {
 
 	// Use this for initialization
     void Start() {
-
         //Time.timeScale = 0.6F; /// DEBUG THIS BREAKS THE SHIT I THINK
 
 		if (GameObject.FindGameObjectWithTag ("LoadLevelParameterTag") == null) {
