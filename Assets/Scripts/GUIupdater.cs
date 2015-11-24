@@ -21,15 +21,15 @@ public class GUIupdater : MonoBehaviour {
 	void Update () {
 
 		//changing stuff bc 1 min. till the end
-		if (((kolajnice.elapsedTime - kolajnice.countInTime)) > ((kolajnice.Beats [kolajnice.Beats.Count - 2] - 60))) {
+		//if (((kolajnice.elapsedTime - kolajnice.countInTime)) > ((kolajnice.Beats [kolajnice.Beats.Count - 2] - 60))) {
 			//...tbd
-		}
+		//}
 
 		//changing color in time
-		timeIn.color = Color.Lerp(startColor, endColor, t);
-		if (t < 1){ 
-			t += Time.deltaTime/(kolajnice.Beats [kolajnice.Beats.Count - 2]);
-		}
+		//timeIn.color = Color.Lerp(startColor, endColor, t);
+		//if (t < 1){ 
+		//	t += Time.deltaTime/(kolajnice.Beats [kolajnice.Beats.Count - 2]);
+		//}
 
 		//print (((Time.time - kolajnice.countInTime)));
 		//print ((kolajnice.Beats [kolajnice.Beats.Count - 2]));

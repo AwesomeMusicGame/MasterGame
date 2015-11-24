@@ -1,7 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Vizualizer : MonoBehaviour {
+public class Vizualizer : MonoBehaviour, SceneItemInterface {
+	
+	
+	public Material podlahaMaterial { get {
+			return null; }}
+	public Material skyboxMaterial { get {
+			return null; }}
+	public GameObject prekazkaPunch { get {
+			return null; }}
+	public GameObject prekazkaSlide { get {
+			return null; }}
 
 	// C#
 	// Instantiates a prefab in a circle
