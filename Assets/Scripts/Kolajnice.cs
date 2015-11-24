@@ -16,6 +16,8 @@ public class Kolajnice : MonoBehaviour {
     private float startTime = 0;
     public float gameOverWait = 5;
 
+	public GameObject debug;
+
 	private LoadingLevelParameter parameterScript;
 	private MusicPlayer musicPlayer;
 
@@ -38,9 +40,10 @@ public class Kolajnice : MonoBehaviour {
 	// Use this for initialization
     void Start() {
 
-        //Time.timeScale = 0.2F; /// DEBUG THIS BREAKS THE SHIT I THINK
+        //Time.timeScale = 0.6F; /// DEBUG THIS BREAKS THE SHIT I THINK
 
 		if (GameObject.FindGameObjectWithTag ("LoadLevelParameterTag") == null) {
+			MasterPickedSong = 0;
 			Debug.LogError ("LoadLevelParameter object not found...");
 		} else {
 			parameterScript = GameObject.FindGameObjectWithTag ("LoadLevelParameterTag").GetComponent<LoadingLevelParameter> ();
@@ -59,7 +62,12 @@ public class Kolajnice : MonoBehaviour {
 
         if (startTime != 0)
         {
-            elapsedTime = Time.time - startTime;
+			float audioTime = musicPlayer.getPlayTime();
+			if (audioTime > 0) {
+				elapsedTime = audioTime + countInTime;
+			} else {
+				elapsedTime = Time.time - startTime;
+			}
 
             if (!GameOver)
             {
@@ -100,8 +108,6 @@ public class Kolajnice : MonoBehaviour {
 
         foreach (float currentBeat in Beats)
         {
-            //DEBUG LINES
-            //Instantiate(debugBeat, new Vector3(currentBeat, 0, 0), debugBeat.transform.localRotation);
 
             modifiedBeat = currentBeat * stretchingFactor;
 
@@ -118,7 +124,7 @@ public class Kolajnice : MonoBehaviour {
                 if (row == lastRow)
                 {
                     int prekazka = Random.Range(0, prekazkaPrefab.Length);
-                    GameObject tempPrekazka = (GameObject) Instantiate(prekazkaPrefab[prekazka], new Vector3(lastBeat, 0, sideDistance * row), Quaternion.identity);
+					GameObject tempPrekazka = (GameObject) Instantiate(prekazkaPrefab[prekazka], new Vector3(lastBeat + beatLenght/4, 0, sideDistance * row), Quaternion.identity);
                     tempPrekazka.transform.parent = this.transform;
                 }
 
@@ -132,6 +138,10 @@ public class Kolajnice : MonoBehaviour {
             GameObject temp = (GameObject)Instantiate(kockaPrefab, new Vector3(lastBeat, 0, sideDistance * row), Quaternion.identity);
             temp.transform.parent = this.transform;
             temp.GetComponent<Stretching>().lenght = beatLenght;
+
+			//Draw debug line
+			//GameObject line = (GameObject)Instantiate(debug, new Vector3(lastBeat, 0, sideDistance * row), Quaternion.identity);
+			//line.transform.parent = this.transform;
 
             lastBeat = modifiedBeat;
         }

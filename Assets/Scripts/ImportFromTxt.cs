@@ -16,6 +16,7 @@ namespace BeatTheMusic
         private string path3 = @".\Assets\Songs\Poor-o.txt";
         public string customPath;
         private string filename;
+        private LoadingLevelParameter load;
 
         public int pickedSong = 2;
 
@@ -23,7 +24,7 @@ namespace BeatTheMusic
         void Start()
         {
             kolajniceScript = GameObject.FindGameObjectWithTag("KolajniceTag").GetComponent<Kolajnice>();
-
+            load = GameObject.FindGameObjectWithTag("LoadLevelParameterTag").GetComponent<LoadingLevelParameter>();
             pickedSong = kolajniceScript.MasterPickedSong;
             switch (pickedSong)
             {
@@ -37,7 +38,7 @@ namespace BeatTheMusic
                     filename = path3;
                     break;
                 case 0:
-                    filename = customPath;
+                    filename = load.getCustomPath();
                     break;
             }
 
