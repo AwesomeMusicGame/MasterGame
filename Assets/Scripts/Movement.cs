@@ -102,10 +102,9 @@ public class Movement : MonoBehaviour {
             canMove = false;
         }
         //input down
-        if ((Input.GetAxis("Vertical") < 0) && canMove) 
+        if ((Input.GetAxis("Vertical") < 0) && canMove)
         {
-            GetComponent<CapsuleCollider>().center = new Vector3(0, -0.5f, 0);
-            GetComponent<CapsuleCollider>().height = 1;
+            this.GetComponentInChildren<WallPuncherScript>().Slide();
 
             //start skeletal animation
             animator.StartSlideAnimation();
@@ -153,11 +152,5 @@ public class Movement : MonoBehaviour {
             //rotate me back
             transform.rotation = Quaternion.identity;
         }
-    }
-
-    public void SlideEnd()
-    {
-        GetComponent<CapsuleCollider>().center = new Vector3(0, 0, 0);
-        GetComponent<CapsuleCollider>().height = 2;
     }
 }

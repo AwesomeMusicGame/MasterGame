@@ -1,31 +1,42 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class OscilatingObjectsCircular : MonoBehaviour, ISceneItem {
-	
-	
-	public Material podlahaMaterial { 
-		get {
-			return null; 
-		}
-	}
-	public Material skyboxMaterial { 
-		get 
-		{
-			return null; 
-		}
-	}
-	public GameObject prekazkaPunch { 
-		get {
-			return null; 
-		}
-	}
-	public GameObject prekazkaSlide { 
-		get 
-		{
-			return null; 
-		}
-	}
+public class RockVisual : MonoBehaviour, ISceneItem {
+
+    //ISceneItem
+    public Material podlaha;
+    public Material skybox;
+    public GameObject punch_prekazka;
+    public GameObject slide_prekazka;
+    public Material podlahaMaterial
+    {
+        get
+        {
+            return podlaha;
+        }
+    }
+    public Material skyboxMaterial
+    {
+        get
+        {
+            return skybox;
+        }
+    }
+    public GameObject prekazkaPunch
+    {
+        get
+        {
+            return punch_prekazka;
+        }
+    }
+    public GameObject prekazkaSlide
+    {
+        get
+        {
+            return slide_prekazka;
+        }
+    }
+    //ISceneItem
 
     private int sampleRate = 1024;
     private GameObject[] objects; 

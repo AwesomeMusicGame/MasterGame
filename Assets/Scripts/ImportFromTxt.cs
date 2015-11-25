@@ -18,13 +18,14 @@ namespace BeatTheMusic
         private string filename;
         private LoadingLevelParameter load;
 
-        public int pickedSong = 2;
+        public int pickedSong;
 
         // Use this for initialization
         void Start()
         {
             kolajniceScript = GameObject.FindGameObjectWithTag("KolajniceTag").GetComponent<Kolajnice>();
-            load = GameObject.FindGameObjectWithTag("LoadLevelParameterTag").GetComponent<LoadingLevelParameter>();
+            if (GameObject.FindGameObjectWithTag("LoadLevelParameterTag") != null)
+                load = GameObject.FindGameObjectWithTag("LoadLevelParameterTag").GetComponent<LoadingLevelParameter>();
             pickedSong = kolajniceScript.MasterPickedSong;
             switch (pickedSong)
             {

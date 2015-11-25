@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 
 public class Kolajnice : MonoBehaviour {
 
+    public GameObject[] SceneVariants;
     public GameObject TextPrefab;
     public GameObject kockaPrefab;
     public GameObject[] prekazkaPrefab;
@@ -15,6 +17,7 @@ public class Kolajnice : MonoBehaviour {
     public float elapsedTime = 0;
     private float startTime = 0;
     public float gameOverWait = 0;
+    public int pickedScene = 1;
 
 	public GameObject debug;
 
@@ -38,12 +41,22 @@ public class Kolajnice : MonoBehaviour {
 
 
 	// Use this for initialization
-    void Start() {
-        //Time.timeScale = 0.6F; /// DEBUG THIS BREAKS THE SHIT I THINK
+    void Start()
+    {
+
+        GameObject picked = Instantiate(SceneVariants[pickedScene], transform.position, Quaternion.identity) as GameObject;
+        picked.transform.parent = this.transform;
+
+        //set veci z presetu
+        RenderSettings.skybox = picked.GetComponent<ISceneItem>().skyboxMaterial;
+        prekazkaPrefab = new GameObject[2];
+        prekazkaPrefab[0] = picked.GetComponent<ISceneItem>().prekazkaPunch;
+        prekazkaPrefab[1] = picked.GetComponent<ISceneItem>().prekazkaSlide;
+        kockaPrefab.GetComponent<Stretching>().SetMaterial(picked.GetComponent<ISceneItem>().podlahaMaterial);
 
 		if (GameObject.FindGameObjectWithTag ("LoadLevelParameterTag") == null) {
-			MasterPickedSong = 0;
-			Debug.LogError ("LoadLevelParameter object not found...");
+			MasterPickedSong = 1;
+			Debug.LogWarning ("LoadLevelParameter object not found...");
 		} else {
 			parameterScript = GameObject.FindGameObjectWithTag ("LoadLevelParameterTag").GetComponent<LoadingLevelParameter> ();
 			MasterPickedSong = parameterScript.getLoadLevelParameter();
@@ -53,7 +66,10 @@ public class Kolajnice : MonoBehaviour {
 
         this.transform.position = new Vector3(stretchingFactor * countInTime, 0, -sideDistance);
 		elapsedTime = 0;
-        startTime = Time.time;
+        if (EditorApplication.isPlaying)
+            startTime = -0.01f;
+        else 
+            startTime = Time.time;
 	}
 
     // Update is called once per frame
