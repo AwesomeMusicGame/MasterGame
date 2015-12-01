@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -18,6 +19,7 @@ public class Kolajnice : MonoBehaviour {
     private float startTime = 0;
     public float gameOverWait = 0;
     public int pickedScene = 3;
+    public bool isEasy = true;
 
 	public GameObject debug;
 
@@ -38,6 +40,13 @@ public class Kolajnice : MonoBehaviour {
             _beats = value;
         }
     }
+    public float SongTime
+    {
+        get
+        {
+            return elapsedTime - countInTime;
+        }
+    }
 
 
 	// Use this for initialization
@@ -45,7 +54,6 @@ public class Kolajnice : MonoBehaviour {
     {
 
         GameObject picked = Instantiate(SceneVariants[pickedScene], transform.position, Quaternion.identity) as GameObject;
-        picked.transform.parent = this.transform;
 
         //set veci z presetu
         RenderSettings.skybox = picked.GetComponent<ISceneItem>().skyboxMaterial;
@@ -53,6 +61,7 @@ public class Kolajnice : MonoBehaviour {
         prekazkaPrefab[0] = picked.GetComponent<ISceneItem>().prekazkaPunch;
         prekazkaPrefab[1] = picked.GetComponent<ISceneItem>().prekazkaSlide;
         kockaPrefab.GetComponent<Stretching>().SetMaterial(picked.GetComponent<ISceneItem>().podlahaMaterial);
+        (GameObject.FindGameObjectWithTag("UIText") as GameObject).GetComponent<Text>().color = picked.GetComponent<ISceneItem>().fontColor;
 
 		if (GameObject.FindGameObjectWithTag ("LoadLevelParameterTag") == null) {
 			MasterPickedSong = 1;
@@ -138,9 +147,17 @@ public class Kolajnice : MonoBehaviour {
 
                 if (row == lastRow)
                 {
-                    int prekazka = Random.Range(0, prekazkaPrefab.Length);
-					GameObject tempPrekazka = (GameObject) Instantiate(prekazkaPrefab[prekazka], new Vector3(lastBeat + beatLenght/4, 0, sideDistance * row), Quaternion.identity);
-                    tempPrekazka.transform.parent = this.transform;
+                    if (isEasy)
+                    {
+                        while (row == lastRow)
+                            row = Random.Range(0, 3);
+                    }
+                    else
+                    {
+                        int prekazka = Random.Range(0, prekazkaPrefab.Length);
+                        GameObject tempPrekazka = (GameObject)Instantiate(prekazkaPrefab[prekazka], new Vector3(lastBeat + beatLenght / 4, 0, sideDistance * row), Quaternion.identity);
+                        tempPrekazka.transform.parent = this.transform;
+                    }
                 }
 
                 lastRow = row;
@@ -162,7 +179,8 @@ public class Kolajnice : MonoBehaviour {
         }
     }
 
-    public float getCurrentBeatLength(float time) {
+    public float getCurrentBeatLength(float time)
+    {
 
         int nextBeatIndex = Beats.FindIndex(x => x > time);
         float nextBeat, lastBeat;
@@ -179,6 +197,11 @@ public class Kolajnice : MonoBehaviour {
         }
 
         return (nextBeat - lastBeat);
+    }
+
+    public float getBeatTime(int index)
+    {
+        return _beats[index];
     }
 
 	/*//choosing lvl from main menu

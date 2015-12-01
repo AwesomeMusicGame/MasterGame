@@ -36,6 +36,13 @@ public class RockVisual : MonoBehaviour, ISceneItem {
             return slide_prekazka;
         }
     }
+    public Color fontColor
+    {
+        get
+        {
+            return Color.red;
+        }
+    }
     //ISceneItem
 
     private int sampleRate = 1024;

@@ -71,6 +71,7 @@ namespace BeatTheMusic
                         //                    Debug.Log(tempFloat + " parsed from: " + part);
                     }
                     //                kolajniceScript.DebugWriteAllBeats();
+
                     kolajniceScript.Beats = tempList;
                     reader.Close();
                 }

@@ -36,6 +36,13 @@ public class ElectronicVisual : MonoBehaviour, ISceneItem
             return slide_prekazka;
         }
     }
+    public Color fontColor
+    {
+        get
+        {
+            return Color.red;
+        }
+    }
     //ISceneItem
 
     // C#

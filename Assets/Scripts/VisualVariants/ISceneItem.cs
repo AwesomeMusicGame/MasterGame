@@ -5,6 +5,7 @@ public interface ISceneItem {
 	
 	Material podlahaMaterial { get; }
 	Material skyboxMaterial { get; }
-	GameObject prekazkaPunch { get; }
-	GameObject prekazkaSlide { get; }
+    GameObject prekazkaPunch { get; }
+    GameObject prekazkaSlide { get; }
+    Color fontColor { get; }
 }
