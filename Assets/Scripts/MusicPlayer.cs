@@ -10,16 +10,20 @@ public class MusicPlayer : MonoBehaviour {
     public AudioClip song1;
     public AudioClip song2;
     public AudioClip song3;
-    public AudioClip customSong;
+    private AudioClip customSong;
 
     public int pickedSong = 3;
 
     private AudioSource audio;
 
+    private LoadingLevelParameter load;
+
     // Use this for initialization
     void Start() {
         kolajnice = GameObject.FindGameObjectWithTag("KolajniceTag").GetComponent<Kolajnice>();
         character = GameObject.FindGameObjectWithTag("Player");
+        if (GameObject.FindGameObjectWithTag("LoadLevelParameterTag") != null)
+                load = GameObject.FindGameObjectWithTag("LoadLevelParameterTag").GetComponent<LoadingLevelParameter>();
         audio = GetComponent<AudioSource>();
         pickedSong = kolajnice.MasterPickedSong;
         switch (pickedSong)
@@ -34,9 +38,26 @@ public class MusicPlayer : MonoBehaviour {
                 audio.clip = song3;
                 break;
             case 0:
+                Debug.Log(load.getCustomSongPath());
+                StartCoroutine(loadMp3(load.getCustomSongPath()));
                 audio.clip = customSong;
                 break;
         }
+    }
+
+    IEnumerator loadMp3(string path)
+    {
+        WWW www = new WWW("file://" + path);
+
+        //AudioClip clip = www.audioClip;
+        AudioClip clip = www.audioClip;
+        //while (!clip.isReadyToPlay)
+        yield return www;
+        customSong = clip;
+        
+        //string[] parts = path.Split('\\');
+        //clip.name = parts[parts.Length - 1];
+        //clips.Add(clip);
     }
 
 	public float getPlayTime() {

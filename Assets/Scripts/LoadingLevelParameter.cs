@@ -5,7 +5,8 @@ public class LoadingLevelParameter : MonoBehaviour {
 
 	private int loadLevelParamerer = 0;
 	public int tempp;
-    private string customPath;
+    private string customTxtPath;
+    private string customSongPath;
 
 	void Awake() {
 		tempp = loadLevelParamerer;
@@ -19,12 +20,22 @@ public class LoadingLevelParameter : MonoBehaviour {
 
     public void setCustomPath(string temp)
     {
-        customPath = temp;
+        customTxtPath = temp;
     }
 
     public string getCustomPath()
     {
-        return customPath;
+        return customTxtPath;
+    }
+
+    public void setCustomSongPath(string temp)
+    {
+        customSongPath = temp;
+    }
+
+    public string getCustomSongPath()
+    {
+        return customSongPath;
     }
 
 	public void setLoadLevelParameter(int level)
