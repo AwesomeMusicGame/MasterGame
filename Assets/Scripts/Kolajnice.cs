@@ -17,7 +17,7 @@ public class Kolajnice : MonoBehaviour {
     public float elapsedTime = 0;
     private float startTime = 0;
     public float gameOverWait = 0;
-    public int pickedScene = 1;
+    public int pickedScene = 3;
 
 	public GameObject debug;
 
