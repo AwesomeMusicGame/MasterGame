@@ -1,9 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\bakalariss\Assets\scripts\s_sphere_move2.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\bakalariss\Assets\scripts\s_sphere_move.cs">
     <Files>
-      <File FileName="..\..\bakalariss\Assets\scripts\s_sphere_move.cs" Line="158" Column="31" />
-      <File FileName="..\..\bakalariss\Assets\scripts\s_sphere_move2.cs" Line="223" Column="43" />
+      <File FileName="..\..\bakalariss\Assets\scripts\s_sphere_move.cs" Line="111" Column="4" />
+      <File FileName="..\..\bakalariss\Assets\scripts\s_sphere_moveUP.cs" Line="112" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

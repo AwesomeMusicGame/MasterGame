@@ -21,7 +21,7 @@ public class MusicPlayer : MonoBehaviour {
         kolajnice = GameObject.FindGameObjectWithTag("KolajniceTag").GetComponent<Kolajnice>();
         character = GameObject.FindGameObjectWithTag("Player");
         audio = GetComponent<AudioSource>();
-        //pickedSong = kolajnice.MasterPickedSong;
+        pickedSong = kolajnice.MasterPickedSong;
         switch (pickedSong)
         {
             case 1:
@@ -75,7 +75,5 @@ public class MusicPlayer : MonoBehaviour {
         {
             audio.Stop();
         }
-
-		Debug.Log (audio.time + " = " + (kolajnice.elapsedTime - kolajnice.countInTime));
 	}
 }
