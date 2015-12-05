@@ -47,7 +47,12 @@ public class MusicPlayer : MonoBehaviour {
 			return 0;
 		}
 	}
-	
+
+	public AudioSource GetAudioSource()
+	{
+		return audio;
+	}
+
 	// Update is called once per frame
 	void Update () {
         if (!audio.isPlaying && kolajnice.elapsedTime >= kolajnice.countInTime)
