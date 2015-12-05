@@ -48,11 +48,15 @@ public class Kolajnice : MonoBehaviour {
         }
     }
 
+	public bool Pause = false;
+	public float currentAudioSourceTime = -5f;
+	public Text PauseText;
+
 
 	// Use this for initialization
     void Start()
     {
-
+		PauseText.enabled = false;
         GameObject picked = Instantiate(SceneVariants[pickedScene], transform.position, Quaternion.identity) as GameObject;
 
         //set veci z presetu
@@ -84,27 +88,50 @@ public class Kolajnice : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        if (startTime != 0)
-        {
-			float audioTime = musicPlayer.getPlayTime();
-			if (audioTime > 0) {
-				elapsedTime = audioTime + countInTime;
-			} else {
-				elapsedTime = Time.time - startTime;
+		if (Input.GetButtonDown ("Cancel")) {
+			Application.LoadLevel(2);
+		}
+
+		if (Input.GetButtonDown ("Pause")) {
+			Pause = !Pause;
+			if(Pause)
+			{
+				currentAudioSourceTime = musicPlayer.GetAudioSource().time;
+				musicPlayer.GetAudioSource().mute = true;
+				Debug.Log("AUDIO PAUSED IN TIME: " + currentAudioSourceTime);
+				PauseText.enabled = true;
+			}
+			else
+			{
+				musicPlayer.GetAudioSource().mute = false;
+				musicPlayer.GetAudioSource().time = currentAudioSourceTime;
+				musicPlayer.GetAudioSource().Play();
+				Debug.Log ("AUDIO UNPAUSED");
+				PauseText.enabled = false;
+			}
+		}
+
+
+		if (startTime != 0) {
+			if (!Pause) {
+				float audioTime = musicPlayer.getPlayTime ();
+				if (audioTime > 0) {
+					elapsedTime = audioTime + countInTime;
+				} else {
+					elapsedTime = Time.time - startTime;
+				}
 			}
 
-            if (!GameOver)
-            {
-                this.transform.position = new Vector3(-(elapsedTime - countInTime) * stretchingFactor, 0, -sideDistance);
-            }
-            else
-            {
-                if (gameOverWait > 0)
-                    gameOverWait -= Time.deltaTime;
-                else
-                    Application.LoadLevel(2);
-            }
-        } 
+			if (!GameOver) {
+				this.transform.position = new Vector3 (-(elapsedTime - countInTime) * stretchingFactor, 0, -sideDistance);
+			} else {
+				if (gameOverWait > 0)
+					gameOverWait -= Time.deltaTime;
+				else
+					Application.LoadLevel (2);
+			}
+			
+		} 
 	}
 
     public void SpawnMap()

@@ -1,9 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\bakalariss\Assets\scripts\s_sphere_move.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Kolajnice.cs">
     <Files>
-      <File FileName="..\..\bakalariss\Assets\scripts\s_sphere_move.cs" Line="111" Column="4" />
-      <File FileName="..\..\bakalariss\Assets\scripts\s_sphere_moveUP.cs" Line="112" Column="4" />
+      <File FileName="Assets\Scripts\Kolajnice.cs" Line="122" Column="4" />
+      <File FileName="Assets\Scripts\MusicPlayer.cs" Line="85" Column="1" />
+      <File FileName="Assets\Scripts\Movement.cs" Line="149" Column="17" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
