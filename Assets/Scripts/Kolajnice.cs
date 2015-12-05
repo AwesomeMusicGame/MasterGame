@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 
 public class Kolajnice : MonoBehaviour {
 
+    public GameObject[] SceneVariants;
     public GameObject TextPrefab;
     public GameObject kockaPrefab;
     public GameObject[] prekazkaPrefab;
@@ -14,7 +17,9 @@ public class Kolajnice : MonoBehaviour {
     public bool GameOver = false;
     public float elapsedTime = 0;
     private float startTime = 0;
-    public float gameOverWait = 5;
+    public float gameOverWait = 0;
+    public int pickedScene = 3;
+    public bool isEasy = true;
 
 	public GameObject debug;
 
@@ -35,16 +40,32 @@ public class Kolajnice : MonoBehaviour {
             _beats = value;
         }
     }
+    public float SongTime
+    {
+        get
+        {
+            return elapsedTime - countInTime;
+        }
+    }
 
 
 	// Use this for initialization
-    void Start() {
+    void Start()
+    {
 
-        //Time.timeScale = 0.6F; /// DEBUG THIS BREAKS THE SHIT I THINK
+        GameObject picked = Instantiate(SceneVariants[pickedScene], transform.position, Quaternion.identity) as GameObject;
+
+        //set veci z presetu
+        RenderSettings.skybox = picked.GetComponent<ISceneItem>().skyboxMaterial;
+        prekazkaPrefab = new GameObject[2];
+        prekazkaPrefab[0] = picked.GetComponent<ISceneItem>().prekazkaPunch;
+        prekazkaPrefab[1] = picked.GetComponent<ISceneItem>().prekazkaSlide;
+        kockaPrefab.GetComponent<Stretching>().SetMaterial(picked.GetComponent<ISceneItem>().podlahaMaterial);
+        (GameObject.FindGameObjectWithTag("UIText") as GameObject).GetComponent<Text>().color = picked.GetComponent<ISceneItem>().fontColor;
 
 		if (GameObject.FindGameObjectWithTag ("LoadLevelParameterTag") == null) {
-			MasterPickedSong = 0;
-			Debug.LogError ("LoadLevelParameter object not found...");
+			MasterPickedSong = 1;
+			Debug.LogWarning ("LoadLevelParameter object not found...");
 		} else {
 			parameterScript = GameObject.FindGameObjectWithTag ("LoadLevelParameterTag").GetComponent<LoadingLevelParameter> ();
 			MasterPickedSong = parameterScript.getLoadLevelParameter();
@@ -54,7 +75,10 @@ public class Kolajnice : MonoBehaviour {
 
         this.transform.position = new Vector3(stretchingFactor * countInTime, 0, -sideDistance);
 		elapsedTime = 0;
-        startTime = Time.time;
+        if (EditorApplication.isPlaying)
+            startTime = -0.01f;
+        else 
+            startTime = Time.time;
 	}
 
     // Update is called once per frame
@@ -123,9 +147,17 @@ public class Kolajnice : MonoBehaviour {
 
                 if (row == lastRow)
                 {
-                    int prekazka = Random.Range(0, prekazkaPrefab.Length);
-					GameObject tempPrekazka = (GameObject) Instantiate(prekazkaPrefab[prekazka], new Vector3(lastBeat + beatLenght/4, 0, sideDistance * row), Quaternion.identity);
-                    tempPrekazka.transform.parent = this.transform;
+                    if (isEasy)
+                    {
+                        while (row == lastRow)
+                            row = Random.Range(0, 3);
+                    }
+                    else
+                    {
+                        int prekazka = Random.Range(0, prekazkaPrefab.Length);
+                        GameObject tempPrekazka = (GameObject)Instantiate(prekazkaPrefab[prekazka], new Vector3(lastBeat + beatLenght / 4, 0, sideDistance * row), Quaternion.identity);
+                        tempPrekazka.transform.parent = this.transform;
+                    }
                 }
 
                 lastRow = row;
@@ -147,7 +179,8 @@ public class Kolajnice : MonoBehaviour {
         }
     }
 
-    public float getCurrentBeatLength(float time) {
+    public float getCurrentBeatLength(float time)
+    {
 
         int nextBeatIndex = Beats.FindIndex(x => x > time);
         float nextBeat, lastBeat;
@@ -164,6 +197,11 @@ public class Kolajnice : MonoBehaviour {
         }
 
         return (nextBeat - lastBeat);
+    }
+
+    public float getBeatTime(int index)
+    {
+        return _beats[index];
     }
 
 	/*//choosing lvl from main menu

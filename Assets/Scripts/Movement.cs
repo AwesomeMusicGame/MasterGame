@@ -16,6 +16,7 @@ public class Movement : MonoBehaviour {
     private float animationRotation = 20;
     private bool teleport = false;
     private PlayerAnimation animator;
+    private MusicPlayer mPlayer;
 
     private Kolajnice kolajnice;
 
@@ -26,6 +27,7 @@ public class Movement : MonoBehaviour {
         jumpDistance = kolajnice.sideDistance;
         targetPosition = transform.localPosition;
         startPosition = targetPosition;
+        mPlayer = GameObject.FindGameObjectWithTag("MusicPlayer").GetComponent<MusicPlayer>();
 	}
 	
 	// Update is called once per frame
@@ -57,7 +59,7 @@ public class Movement : MonoBehaviour {
                 teleport = true;
             }
             //calculate time stuff
-            animLength = kolajnice.getCurrentBeatLength(kolajnice.elapsedTime) / animSpeedMultipiler;
+            animLength = kolajnice.getCurrentBeatLength(kolajnice.SongTime) / animSpeedMultipiler;
             startTime = kolajnice.elapsedTime;
             //rotate in the right direction
             transform.Rotate(transform.right, -animationRotation, Space.Self);
@@ -66,6 +68,7 @@ public class Movement : MonoBehaviour {
 
             //start skeletal animation
             animator.StartJumpAnimation();
+            DoScoring();
         }
         //input left
         if ((Input.GetAxis("Horizontal") < 0) && canMove)
@@ -80,7 +83,7 @@ public class Movement : MonoBehaviour {
                 teleport = true;
             }
             //calculate time stuff
-            animLength = kolajnice.getCurrentBeatLength(kolajnice.elapsedTime) / animSpeedMultipiler;
+            animLength = kolajnice.getCurrentBeatLength(kolajnice.SongTime) / animSpeedMultipiler;
             startTime = kolajnice.elapsedTime;
             //rotate in the right direction
             transform.Rotate(transform.right, animationRotation, Space.Self);
@@ -89,6 +92,7 @@ public class Movement : MonoBehaviour {
 
             //start skeletal animation
             animator.StartJumpAnimation();
+            DoScoring();
         }
         //input up
         if ((Input.GetAxis("Vertical") > 0) && canMove)
@@ -100,36 +104,43 @@ public class Movement : MonoBehaviour {
 
             //disable input
             canMove = false;
+            DoScoring();
         }
         //input down
-        if ((Input.GetAxis("Vertical") < 0) && canMove) 
+        if ((Input.GetAxis("Vertical") < 0) && canMove)
         {
-            GetComponent<CapsuleCollider>().center = new Vector3(0, -0.5f, 0);
-            GetComponent<CapsuleCollider>().height = 1;
+            this.GetComponentInChildren<WallPuncherScript>().Slide();
 
             //start skeletal animation
             animator.StartSlideAnimation();
 
             //disable input
             canMove = false;
+            DoScoring();
         }
 
 
-        //held fly key
-        if (Input.GetButton("Fly"))
-        {
-            GetComponent<Rigidbody>().useGravity = false;
-            this.transform.position = new Vector3(this.transform.position.x, 2,this.transform.position.z);
-        }
-        else
-        {
-            if (!GetComponent<Rigidbody>().useGravity)
-                GetComponent<Rigidbody>().useGravity = true;
-        }
+        ////held fly key
+        //if (Input.GetButton("Fly"))
+        //{
+        //    GetComponent<Rigidbody>().useGravity = false;
+        //    this.transform.position = new Vector3(this.transform.position.x, 2,this.transform.position.z);
+        //}
+        //else
+        //{
+        //    if (!GetComponent<Rigidbody>().useGravity)
+        //        GetComponent<Rigidbody>().useGravity = true;
+        //}
     }
+
+    private void DoScoring()
+    {
+
+    }
+
     private void DoAnimations()
     {
-        animator.SetLenght(kolajnice.getCurrentBeatLength(kolajnice.elapsedTime) * kolajnice.stretchingFactor / 2);
+        animator.SetLenght(kolajnice.getCurrentBeatLength(kolajnice.SongTime) * kolajnice.stretchingFactor / 2);
 
         //if not at the position I should be, do animation, used for movement
         if (transform.localPosition.z != targetPosition.z)
@@ -153,11 +164,5 @@ public class Movement : MonoBehaviour {
             //rotate me back
             transform.rotation = Quaternion.identity;
         }
-    }
-
-    public void SlideEnd()
-    {
-        GetComponent<CapsuleCollider>().center = new Vector3(0, 0, 0);
-        GetComponent<CapsuleCollider>().height = 2;
     }
 }
