@@ -57,8 +57,6 @@ public class Kolajnice : MonoBehaviour {
     void Start()
     {
         PauseText.enabled = false; 
-        
-        SetVisualPreset();
 
 		if (GameObject.FindGameObjectWithTag ("LoadLevelParameterTag") == null) {
 			MasterPickedSong = 1;
@@ -144,6 +142,8 @@ public class Kolajnice : MonoBehaviour {
 
     public void SpawnMap()
     {
+        SetVisualPreset();
+
         //some inits
         int lastRow = 1;
         int row = lastRow;
