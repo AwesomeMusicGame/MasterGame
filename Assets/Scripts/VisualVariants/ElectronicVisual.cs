@@ -43,6 +43,13 @@ public class ElectronicVisual : MonoBehaviour, ISceneItem
             return Color.red;
         }
     }
+    public Color noteColor
+    {
+        get
+        {
+            return Color.white;
+        }
+    }
     //ISceneItem
 
     // C#

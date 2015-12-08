@@ -43,6 +43,13 @@ public class RockVisual : MonoBehaviour, ISceneItem {
             return Color.red;
         }
     }
+    public Color noteColor
+    {
+        get
+        {
+            return Color.red;
+        }
+    }
     //ISceneItem
 
     private int sampleRate = 1024;

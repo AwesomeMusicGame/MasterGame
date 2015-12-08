@@ -56,16 +56,9 @@ public class Kolajnice : MonoBehaviour {
 	// Use this for initialization
     void Start()
     {
-		PauseText.enabled = false;
-        GameObject picked = Instantiate(SceneVariants[pickedScene], transform.position, Quaternion.identity) as GameObject;
-
-        //set veci z presetu
-        RenderSettings.skybox = picked.GetComponent<ISceneItem>().skyboxMaterial;
-        prekazkaPrefab = new GameObject[2];
-        prekazkaPrefab[0] = picked.GetComponent<ISceneItem>().prekazkaPunch;
-        prekazkaPrefab[1] = picked.GetComponent<ISceneItem>().prekazkaSlide;
-        kockaPrefab.GetComponent<Stretching>().SetMaterial(picked.GetComponent<ISceneItem>().podlahaMaterial);
-        (GameObject.FindGameObjectWithTag("UIText") as GameObject).GetComponent<Text>().color = picked.GetComponent<ISceneItem>().fontColor;
+        PauseText.enabled = false; 
+        
+        SetVisualPreset();
 
 		if (GameObject.FindGameObjectWithTag ("LoadLevelParameterTag") == null) {
 			MasterPickedSong = 1;
@@ -84,6 +77,21 @@ public class Kolajnice : MonoBehaviour {
         else 
             startTime = Time.time;
 	}
+
+    private void SetVisualPreset()
+    {
+
+        GameObject picked = Instantiate(SceneVariants[pickedScene], transform.position, Quaternion.identity) as GameObject;
+
+        //set veci z presetu
+        RenderSettings.skybox = picked.GetComponent<ISceneItem>().skyboxMaterial;
+        prekazkaPrefab = new GameObject[2];
+        prekazkaPrefab[0] = picked.GetComponent<ISceneItem>().prekazkaPunch;
+        prekazkaPrefab[1] = picked.GetComponent<ISceneItem>().prekazkaSlide;
+        kockaPrefab.GetComponent<Stretching>().SetMaterial(picked.GetComponent<ISceneItem>().podlahaMaterial);
+        (GameObject.FindGameObjectWithTag("UIText") as GameObject).GetComponent<Text>().color = picked.GetComponent<ISceneItem>().fontColor;
+        (GameObject.FindGameObjectWithTag("PlayerMesh") as GameObject).GetComponent<notaSetter>().SetColor(picked.GetComponent<ISceneItem>().noteColor);
+    }
 
     // Update is called once per frame
     void Update () {

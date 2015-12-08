@@ -8,4 +8,5 @@ public interface ISceneItem {
     GameObject prekazkaPunch { get; }
     GameObject prekazkaSlide { get; }
     Color fontColor { get; }
+    Color noteColor { get; }
 }
