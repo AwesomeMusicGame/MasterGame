@@ -17,6 +17,8 @@ public class Movement : MonoBehaviour {
     private bool teleport = false;
     private PlayerAnimation animator;
     private MusicPlayer mPlayer;
+    private float lastScored = 0;
+    public int ScoreTotal = 0;
 
     private Kolajnice kolajnice;
 
@@ -135,7 +137,15 @@ public class Movement : MonoBehaviour {
 
     private void DoScoring()
     {
+        float scored = kolajnice.getClosestBeatTime();
+        if (lastScored != scored) {
+            float score = (scored - kolajnice.SongTime);
+            score *= 100;
 
+            ScoreTotal += (int) score;
+            Debug.Log("+" + score + " = " + ScoreTotal);
+        }
+        lastScored = scored;
     }
 
     private void DoAnimations()

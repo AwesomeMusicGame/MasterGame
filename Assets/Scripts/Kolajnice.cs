@@ -89,6 +89,7 @@ public class Kolajnice : MonoBehaviour {
         kockaPrefab.GetComponent<Stretching>().SetMaterial(picked.GetComponent<ISceneItem>().podlahaMaterial);
         (GameObject.FindGameObjectWithTag("UIText") as GameObject).GetComponent<Text>().color = picked.GetComponent<ISceneItem>().fontColor;
         (GameObject.FindGameObjectWithTag("PlayerMesh") as GameObject).GetComponent<notaSetter>().SetColor(picked.GetComponent<ISceneItem>().noteColor);
+        TextPrefab.GetComponent<TextMesh>().color = picked.GetComponent<ISceneItem>().countInFontColor;
     }
 
     // Update is called once per frame
@@ -234,9 +235,15 @@ public class Kolajnice : MonoBehaviour {
         return (nextBeat - lastBeat);
     }
 
-    public float getBeatTime(int index)
+    public float getClosestBeatTime()
     {
-        return _beats[index];
+
+        int nextBeatIndex = Beats.FindIndex(x => x >= SongTime);
+        int lastBeatIndex = Beats.FindIndex(x => x <= SongTime);
+        int resultIndex = (Mathf.Abs(SongTime - nextBeatIndex) > Mathf.Abs(SongTime - lastBeatIndex)) ? lastBeatIndex : nextBeatIndex;
+        if (resultIndex < 0 || resultIndex >= Beats.Count)
+            resultIndex = 0;
+        return Beats[resultIndex];
     }
 
 	/*//choosing lvl from main menu

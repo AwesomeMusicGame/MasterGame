@@ -50,6 +50,13 @@ public class RockVisual : MonoBehaviour, ISceneItem {
             return Color.red;
         }
     }
+    public Color countInFontColor
+    {
+        get
+        {
+            return Color.red;
+        }
+    }
     //ISceneItem
 
     private int sampleRate = 1024;

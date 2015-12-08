@@ -50,6 +50,13 @@ public class ElectronicVisual : MonoBehaviour, ISceneItem
             return Color.white;
         }
     }
+    public Color countInFontColor
+    {
+        get
+        {
+            return Color.red;
+        }
+    }
     //ISceneItem
 
     // C#
