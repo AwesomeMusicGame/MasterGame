@@ -14,7 +14,6 @@ namespace BeatTheMusic
         private string path1 = @".\Assets\Songs\ThinkDude.txt";
         private string path2 = @".\Assets\Songs\Tea Blaster.txt";
         private string path3 = @".\Assets\Songs\Poor-o.txt";
-        public string customPath;
         private string filename;
         private LoadingLevelParameter load;
 
