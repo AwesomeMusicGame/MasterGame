@@ -57,12 +57,12 @@ namespace BeatTheMusic
                     Debug.Log(fb.outputFile.ToString());
                     if (File.Exists(Path.GetFileNameWithoutExtension(fb.outputFile.ToString()) + ".mp3"))
                     {
-                        
-                        
+
+
                         output = fb.outputFile.ToString();
                         string txt = fb.outputFile.ToString();
-                        importTxt.customPath = txt;
-                        string mp3 = Path.GetFileNameWithoutExtension(fb.outputFile.ToString()) + ".mp3";
+                        //importTxt.customPath = txt;
+                        //string mp3 = Path.GetFileNameWithoutExtension(fb.outputFile.ToString()) + ".mp3";
                         //musicPlayer.customSong = 
                         load.setCustomPath(txt);
                         load.setLoadLevelParameter(0);
