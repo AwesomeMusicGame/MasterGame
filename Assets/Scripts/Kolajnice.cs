@@ -56,16 +56,7 @@ public class Kolajnice : MonoBehaviour {
 	// Use this for initialization
     void Start()
     {
-		PauseText.enabled = false;
-        GameObject picked = Instantiate(SceneVariants[pickedScene], transform.position, Quaternion.identity) as GameObject;
-
-        //set veci z presetu
-        RenderSettings.skybox = picked.GetComponent<ISceneItem>().skyboxMaterial;
-        prekazkaPrefab = new GameObject[2];
-        prekazkaPrefab[0] = picked.GetComponent<ISceneItem>().prekazkaPunch;
-        prekazkaPrefab[1] = picked.GetComponent<ISceneItem>().prekazkaSlide;
-        kockaPrefab.GetComponent<Stretching>().SetMaterial(picked.GetComponent<ISceneItem>().podlahaMaterial);
-        (GameObject.FindGameObjectWithTag("UIText") as GameObject).GetComponent<Text>().color = picked.GetComponent<ISceneItem>().fontColor;
+        PauseText.enabled = false; 
 
 		if (GameObject.FindGameObjectWithTag ("LoadLevelParameterTag") == null) {
 			MasterPickedSong = 1;
@@ -84,6 +75,22 @@ public class Kolajnice : MonoBehaviour {
         else 
             startTime = Time.time;
 	}
+
+    private void SetVisualPreset()
+    {
+
+        GameObject picked = Instantiate(SceneVariants[pickedScene], transform.position, Quaternion.identity) as GameObject;
+
+        //set veci z presetu
+        RenderSettings.skybox = picked.GetComponent<ISceneItem>().skyboxMaterial;
+        prekazkaPrefab = new GameObject[2];
+        prekazkaPrefab[0] = picked.GetComponent<ISceneItem>().prekazkaPunch;
+        prekazkaPrefab[1] = picked.GetComponent<ISceneItem>().prekazkaSlide;
+        kockaPrefab.GetComponent<Stretching>().SetMaterial(picked.GetComponent<ISceneItem>().podlahaMaterial);
+        (GameObject.FindGameObjectWithTag("UIText") as GameObject).GetComponent<Text>().color = picked.GetComponent<ISceneItem>().fontColor;
+        (GameObject.FindGameObjectWithTag("PlayerMesh") as GameObject).GetComponent<notaSetter>().SetColor(picked.GetComponent<ISceneItem>().noteColor);
+        TextPrefab.GetComponent<TextMesh>().color = picked.GetComponent<ISceneItem>().countInFontColor;
+    }
 
     // Update is called once per frame
     void Update () {
@@ -136,6 +143,8 @@ public class Kolajnice : MonoBehaviour {
 
     public void SpawnMap()
     {
+        SetVisualPreset();
+
         //some inits
         int lastRow = 1;
         int row = lastRow;
@@ -226,9 +235,15 @@ public class Kolajnice : MonoBehaviour {
         return (nextBeat - lastBeat);
     }
 
-    public float getBeatTime(int index)
+    public float getClosestBeatTime()
     {
-        return _beats[index];
+
+        int nextBeatIndex = Beats.FindIndex(x => x >= SongTime);
+        int lastBeatIndex = Beats.FindIndex(x => x <= SongTime);
+        int resultIndex = (Mathf.Abs(SongTime - nextBeatIndex) > Mathf.Abs(SongTime - lastBeatIndex)) ? lastBeatIndex : nextBeatIndex;
+        if (resultIndex < 0 || resultIndex >= Beats.Count)
+            resultIndex = 0;
+        return Beats[resultIndex];
     }
 
 	/*//choosing lvl from main menu

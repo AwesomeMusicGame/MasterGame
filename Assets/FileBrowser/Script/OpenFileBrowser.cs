@@ -19,6 +19,8 @@ namespace BeatTheMusic
         //initialize file browser
         FileBrowser fb = new FileBrowser(new Rect(new Vector2(100, 150), new Vector2(1100, 450)));
         string output = "no file";
+        string songPath;
+        string txtPath;
         // Use this for initialization
         void Start()
         {
@@ -54,17 +56,17 @@ namespace BeatTheMusic
 
                     //true is returned when a file has been selected
                     //the output file is a member if the FileInfo class, if cancel was selected the value is null
-                    Debug.Log(fb.outputFile.ToString());
-                    if (File.Exists(Path.GetFileNameWithoutExtension(fb.outputFile.ToString()) + ".mp3"))
+
+                    string temp = fb.outputFile.ToString();
+                    txtPath = temp.Substring(0, temp.LastIndexOf('.'));
+
+                    if (File.Exists(txtPath + ".mp3"))
                     {
-                        
-                        
-                        output = fb.outputFile.ToString();
+                        songPath = txtPath + ".ogg";
+                        Debug.Log(txtPath + ".mp3");
                         string txt = fb.outputFile.ToString();
-                        importTxt.customPath = txt;
-                        string mp3 = Path.GetFileNameWithoutExtension(fb.outputFile.ToString()) + ".mp3";
-                        //musicPlayer.customSong = 
                         load.setCustomPath(txt);
+                        load.setCustomSongPath(songPath);
                         load.setLoadLevelParameter(0);
                     }
                 }
