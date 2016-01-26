@@ -23,6 +23,7 @@ ModelImporter:
     100030: Null
     100032: prava_ruka
     100034: zub_1
+    100036: CINEMA_4D_Editor
     400000: Joint
     400002: Joint_1
     400004: Joint_1_2
@@ -41,6 +42,7 @@ ModelImporter:
     400030: Null
     400032: prava_ruka
     400034: zub_1
+    400036: CINEMA_4D_Editor
     4300000: zub_1
     7400000: C4D Animation Take
     9500000: //RootNode
