@@ -1,10 +1,15 @@
 fileFormatVersion: 2
 guid: ad2d57cc7b977614ea48e7447e02acce
-timeCreated: 1453668171
+timeCreated: 1453830165
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - podlaha: {fileID: 2100000, guid: e2cf69e2d5867184fbd22594e6d97330, type: 2}
+  - skybox: {instanceID: 0}
+  - punch_prekazka: {instanceID: 0}
+  - slide_prekazka: {instanceID: 0}
+  - prefab: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
