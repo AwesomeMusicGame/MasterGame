@@ -1,10 +1,15 @@
 fileFormatVersion: 2
 guid: c406e6f566952d74c8b877fc1594503e
-timeCreated: 1445770727
+timeCreated: 1453836649
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - podlaha: {fileID: 2100000, guid: d254f3c1721f3fc4a8c717256f45ce87, type: 2}
+  - skybox: {fileID: 2100000, guid: 4b8e16986c00e7f41af2149b74e3e851, type: 2}
+  - punch_prekazka: {fileID: 184416, guid: 7692a5a6559d8f24eabddc01ffce88ec, type: 2}
+  - slide_prekazka: {fileID: 156698, guid: f0926ab41d6250245b5f6fdb87add267, type: 2}
+  - prefab: {fileID: 149190, guid: 8b7bddbc596f74040a0428b3a74d9098, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

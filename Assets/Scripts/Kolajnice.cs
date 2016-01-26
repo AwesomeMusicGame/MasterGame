@@ -18,7 +18,7 @@ public class Kolajnice : MonoBehaviour {
     public float elapsedTime = 0;
     private float startTime = 0;
     public float gameOverWait = 0;
-    public int pickedScene = 3;
+    public int pickedScene = 1;
     public bool isEasy = true;
 
 	public GameObject debug;
@@ -88,7 +88,7 @@ public class Kolajnice : MonoBehaviour {
         prekazkaPrefab[1] = picked.GetComponent<ISceneItem>().prekazkaSlide;
         kockaPrefab.GetComponent<Stretching>().SetMaterial(picked.GetComponent<ISceneItem>().podlahaMaterial);
         (GameObject.FindGameObjectWithTag("UIText") as GameObject).GetComponent<Text>().color = picked.GetComponent<ISceneItem>().fontColor;
-        (GameObject.FindGameObjectWithTag("PlayerMesh") as GameObject).GetComponent<notaSetter>().SetColor(picked.GetComponent<ISceneItem>().noteColor);
+        //(GameObject.FindGameObjectWithTag("PlayerMesh") as GameObject).GetComponent<notaSetter>().SetColor(picked.GetComponent<ISceneItem>().noteColor);
         TextPrefab.GetComponent<TextMesh>().color = picked.GetComponent<ISceneItem>().countInFontColor;
     }
 
