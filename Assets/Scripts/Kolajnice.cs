@@ -2,7 +2,10 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 public class Kolajnice : MonoBehaviour {
 
@@ -59,7 +62,6 @@ public class Kolajnice : MonoBehaviour {
         PauseText.enabled = false; 
 
 		if (GameObject.FindGameObjectWithTag ("LoadLevelParameterTag") == null) {
-			MasterPickedSong = 1;
 			Debug.LogWarning ("LoadLevelParameter object not found...");
 		} else {
 			parameterScript = GameObject.FindGameObjectWithTag ("LoadLevelParameterTag").GetComponent<LoadingLevelParameter> ();
@@ -70,15 +72,16 @@ public class Kolajnice : MonoBehaviour {
 
         this.transform.position = new Vector3(stretchingFactor * countInTime, 0, -sideDistance);
 		elapsedTime = 0;
+#if UNITY_EDITOR
         if (EditorApplication.isPlaying)
             startTime = -0.01f;
         else 
+#endif
             startTime = Time.time;
 	}
 
     private void SetVisualPreset()
     {
-
         GameObject picked = Instantiate(SceneVariants[pickedScene], transform.position, Quaternion.identity) as GameObject;
 
         //set veci z presetu
@@ -88,7 +91,7 @@ public class Kolajnice : MonoBehaviour {
         prekazkaPrefab[1] = picked.GetComponent<ISceneItem>().prekazkaSlide;
         kockaPrefab.GetComponent<Stretching>().SetMaterial(picked.GetComponent<ISceneItem>().podlahaMaterial);
         (GameObject.FindGameObjectWithTag("UIText") as GameObject).GetComponent<Text>().color = picked.GetComponent<ISceneItem>().fontColor;
-        (GameObject.FindGameObjectWithTag("PlayerMesh") as GameObject).GetComponent<notaSetter>().SetColor(picked.GetComponent<ISceneItem>().noteColor);
+        //(GameObject.FindGameObjectWithTag("PlayerMesh") as GameObject).GetComponent<notaSetter>().SetColor(picked.GetComponent<ISceneItem>().noteColor);
         TextPrefab.GetComponent<TextMesh>().color = picked.GetComponent<ISceneItem>().countInFontColor;
     }
 
@@ -252,12 +255,4 @@ public class Kolajnice : MonoBehaviour {
 		return level;
 	}*/
 
-    // Debug help functions
-    public void DebugWriteAllBeats()
-    {
-        foreach (float Beat in _beats)
-        {
-            Debug.Log(Beat + "\n");
-        }
-    }
 }

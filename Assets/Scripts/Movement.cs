@@ -8,17 +8,17 @@ public class Movement : MonoBehaviour {
     private float jumpDistance;
     private int currentPosition = 0;
     private bool canMove = true;
-    private float animLength;
     private Vector3 startPosition;
     private Vector3 targetPosition;
     private float startTime = 0;
-    private float animSpeedMultipiler = 6;
-    private float animationRotation = 20;
     private bool teleport = false;
     private PlayerAnimation animator;
     private MusicPlayer mPlayer;
     private float lastScored = 0;
-    public int ScoreTotal = 0;
+
+    private float animLength;
+    private float animSpeedMultipiler = 6;
+    private float animationRotation = 20;
 
     private Kolajnice kolajnice;
 
@@ -70,7 +70,6 @@ public class Movement : MonoBehaviour {
 
             //start skeletal animation
             animator.StartJumpAnimation();
-            DoScoring();
         }
         //input left
         if ((Input.GetAxis("Horizontal") < 0) && canMove)
@@ -94,7 +93,6 @@ public class Movement : MonoBehaviour {
 
             //start skeletal animation
             animator.StartJumpAnimation();
-            DoScoring();
         }
         //input up
         if ((Input.GetAxis("Vertical") > 0) && canMove)
@@ -106,7 +104,6 @@ public class Movement : MonoBehaviour {
 
             //disable input
             canMove = false;
-            DoScoring();
         }
         //input down
         if ((Input.GetAxis("Vertical") < 0) && canMove)
@@ -118,7 +115,6 @@ public class Movement : MonoBehaviour {
 
             //disable input
             canMove = false;
-            DoScoring();
         }
 
 
@@ -135,22 +131,9 @@ public class Movement : MonoBehaviour {
         //}
     }
 
-    private void DoScoring()
-    {
-        float scored = kolajnice.getClosestBeatTime();
-        if (lastScored != scored) {
-            float score = (scored - kolajnice.SongTime);
-            score *= 100;
-
-            ScoreTotal += (int) score;
-            Debug.Log("+" + score + " = " + ScoreTotal);
-        }
-        lastScored = scored;
-    }
-
     private void DoAnimations()
     {
-        animator.SetLenght(kolajnice.getCurrentBeatLength(kolajnice.SongTime) * kolajnice.stretchingFactor / 2);
+        animator.SetLenght(animLength * animSpeedMultipiler * kolajnice.stretchingFactor / 2);
 
         //if not at the position I should be, do animation, used for movement
         if (transform.localPosition.z != targetPosition.z)
