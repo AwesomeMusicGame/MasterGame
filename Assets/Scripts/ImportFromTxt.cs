@@ -29,15 +29,20 @@ namespace BeatTheMusic
             switch (pickedSong)
             {
                 case 1:
+                    Debug.Log("1");
                     filename = path1;
                     break;
                 case 2:
+                    Debug.Log("2");
                     filename = path2;
                     break;
                 case 3:
+                    Debug.Log("3");
                     filename = path3;
                     break;
                 case 0:
+                    Debug.Log(load.getCustomPath());
+                    Debug.Log("0");
                     filename = load.getCustomPath();
                     break;
             }
