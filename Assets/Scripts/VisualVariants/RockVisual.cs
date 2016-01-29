@@ -40,21 +40,21 @@ public class RockVisual : MonoBehaviour, ISceneItem {
     {
         get
         {
-            return Color.red;
+            return new Color(0, 213/255, 255);
         }
     }
     public Color noteColor
     {
         get
         {
-            return Color.red;
+            return new Color(0, 213 / 255, 255);
         }
     }
     public Color countInFontColor
     {
         get
         {
-            return Color.red;
+            return new Color(0, 213 / 255, 255);
         }
     }
     //ISceneItem
