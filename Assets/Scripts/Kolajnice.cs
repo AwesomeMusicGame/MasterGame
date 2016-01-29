@@ -22,7 +22,7 @@ public class Kolajnice : MonoBehaviour {
     private float startTime = 0;
     public float gameOverWait = 0;
     public int pickedScene = 2;
-    public bool isEasy = true;
+    private bool isEasy = true;
 
 	public GameObject debug;
 
@@ -63,10 +63,18 @@ public class Kolajnice : MonoBehaviour {
 
 		if (GameObject.FindGameObjectWithTag ("LoadLevelParameterTag") == null) {
 			Debug.LogWarning ("LoadLevelParameter object not found...");
+			setIsEasyMode(true);
 		} else {
 			parameterScript = GameObject.FindGameObjectWithTag ("LoadLevelParameterTag").GetComponent<LoadingLevelParameter> ();
 			MasterPickedSong = parameterScript.getLoadLevelParameter();
+			/////////////////////////////////////////////////////
+			if(parameterScript.getDifficulty() == false)
+				setIsEasyMode(true);
+			else
+				setIsEasyMode(false);
+			/////////////////////////////////////////////////////
 		}
+		Debug.Log ("EASY MODE IS >>> " + getIsEasyMode());
 		musicPlayer = GameObject.FindGameObjectWithTag ("MusicPlayer").GetComponent<MusicPlayer> ();
 		musicPlayer.pickedSong = MasterPickedSong;
 
@@ -78,6 +86,16 @@ public class Kolajnice : MonoBehaviour {
         else 
 #endif
             startTime = Time.time;
+	}
+
+	public void setIsEasyMode (bool i)
+	{
+		isEasy = i;
+	}
+
+	public bool getIsEasyMode()
+	{
+		return isEasy;
 	}
 
     private void SetVisualPreset()
@@ -186,7 +204,7 @@ public class Kolajnice : MonoBehaviour {
 
                 if (row == lastRow)
                 {
-                    if (isEasy)
+                    if (getIsEasyMode())
                     {
                         while (row == lastRow)
                             row = Random.Range(0, 3);
