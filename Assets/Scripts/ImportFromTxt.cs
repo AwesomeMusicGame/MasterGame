@@ -26,11 +26,11 @@ namespace BeatTheMusic
             if (GameObject.FindGameObjectWithTag("LoadLevelParameterTag") != null)
                 load = GameObject.FindGameObjectWithTag("LoadLevelParameterTag").GetComponent<LoadingLevelParameter>();
             
-#if UNITY_EDITOR
-            pickedSong = kolajniceScript.MasterPickedSong;
-#else
+//#if UNITY_EDITOR
+//            pickedSong = kolajniceScript.MasterPickedSong;
+//#else
             pickedSong = GameObject.FindGameObjectWithTag("LoadLevelParameterTag").GetComponent<LoadingLevelParameter>().getLoadLevelParameter();
-#endif
+//#endif
 
             switch (pickedSong)
             {

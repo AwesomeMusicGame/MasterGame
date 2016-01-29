@@ -81,12 +81,13 @@ public class Kolajnice : MonoBehaviour {
         this.transform.position = new Vector3(stretchingFactor * countInTime, 0, -sideDistance);
 		elapsedTime = 0;
 
-        startTime = Time.time;
         
-#if UNITY_EDITOR
-        startTime = -0.01f;
-#endif
-	}
+//#if UNITY_EDITOR
+//        startTime = -0.01f;
+//#else
+        startTime = Time.time;
+//#endif
+    }
 
 	public void setIsEasyMode (bool i)
 	{
