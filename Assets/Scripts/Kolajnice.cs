@@ -74,7 +74,7 @@ public class Kolajnice : MonoBehaviour {
 			else
 				setIsEasyMode(false);
 			/////////////////////////////////////////////////////
-			visualPicker = parameterScript.getTypeOfBg();
+            visualPicker = parameterScript.getTypeOfBg();
 		}
 		Debug.Log ("EASY MODE IS >>> " + getIsEasyMode()); //nefunguje z nejakeho dovodu.... 
 		musicPlayer = GameObject.FindGameObjectWithTag ("MusicPlayer").GetComponent<MusicPlayer> ();
@@ -82,12 +82,12 @@ public class Kolajnice : MonoBehaviour {
 
         this.transform.position = new Vector3(stretchingFactor * countInTime, 0, -sideDistance);
 		elapsedTime = 0;
+
+        startTime = Time.time;
+        
 #if UNITY_EDITOR
-        if (EditorApplication.isPlaying)
-            startTime = -0.01f;
-        else 
+        startTime = -0.01f;
 #endif
-            startTime = Time.time;
 	}
 
 	public void setIsEasyMode (bool i)

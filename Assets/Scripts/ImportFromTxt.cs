@@ -25,7 +25,13 @@ namespace BeatTheMusic
             kolajniceScript = GameObject.FindGameObjectWithTag("KolajniceTag").GetComponent<Kolajnice>();
             if (GameObject.FindGameObjectWithTag("LoadLevelParameterTag") != null)
                 load = GameObject.FindGameObjectWithTag("LoadLevelParameterTag").GetComponent<LoadingLevelParameter>();
+            
+#if UNITY_EDITOR
             pickedSong = kolajniceScript.MasterPickedSong;
+#else
+            pickedSong = GameObject.FindGameObjectWithTag("LoadLevelParameterTag").GetComponent<LoadingLevelParameter>().getLoadLevelParameter();
+#endif
+
             switch (pickedSong)
             {
                 case 1:

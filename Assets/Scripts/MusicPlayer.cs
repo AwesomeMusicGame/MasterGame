@@ -107,7 +107,7 @@ public class MusicPlayer : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        if (customSong==null && !audio.isPlaying && kolajnice.elapsedTime >= kolajnice.countInTime)
+        if (!audio.isPlaying && kolajnice.elapsedTime >= kolajnice.countInTime)
         {
             audio.Play();
         }
