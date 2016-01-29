@@ -87,12 +87,12 @@ public class ElectronicVisual : MonoBehaviour, ISceneItem
 
     void Update()
     {
-        float[] spectrum = AudioListener.GetSpectrumData(1024, 0, FFTWindow.Hamming);
-        for (int i = 0; i < numberOfObjects - 7; i++)
-        {
-            Vector3 previousScale = cubes[i].transform.localScale;
-            previousScale.y = spectrum[i] * 5;
-            cubes[i].transform.localScale = previousScale;
-        }
+        //float[] spectrum = AudioListener.GetSpectrumData(1024, 0, FFTWindow.Hamming);
+        //for (int i = 0; i < numberOfObjects - 7; i++)
+        //{
+        //    Vector3 previousScale = cubes[i].transform.localScale;
+        //    previousScale.y = spectrum[i] * 5;
+        //    cubes[i].transform.localScale = previousScale;
+        //}
     }
 }

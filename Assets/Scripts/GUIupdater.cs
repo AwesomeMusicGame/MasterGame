@@ -33,14 +33,14 @@ public class GUIupdater : MonoBehaviour {
 
 		//print (((Time.time - kolajnice.countInTime)));
 		//print ((kolajnice.Beats [kolajnice.Beats.Count - 2]));
-        timeIn.text = FormatTime(kolajnice.elapsedTime - kolajnice.countInTime) + " / " + FormatTime(kolajnice.Beats[kolajnice.Beats.Count - 2]);
+        timeIn.text = FormatTime(kolajnice.musicPlayer.audio.clip.length - kolajnice.SongTime);// FormatTime(kolajnice.elapsedTime - kolajnice.countInTime) + " / " + FormatTime(kolajnice.Beats[kolajnice.Beats.Count - 2]);
 	}
 
     private string FormatTime(float time)
     {
         int multipiler = 1;
         if (time < 0) multipiler = -1;
-        string result = ((multipiler < 0) ? "-" : "") + ((int)time / 60).ToString() + ":" + (time % 60 * multipiler).ToString("0.00");
+        string result = ((multipiler < 0) ? "-" : "") + ((int)time / 60).ToString() + ":" + (time % 60 * multipiler).ToString("00.0");
         return result;
     }
 }

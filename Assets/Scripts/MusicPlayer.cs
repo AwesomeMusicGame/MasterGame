@@ -18,7 +18,7 @@ public class MusicPlayer : MonoBehaviour {
 
     public int pickedSong = 3;
 
-    private AudioSource audio;
+    public AudioSource audio;
 
     private LoadingLevelParameter load;
 
@@ -93,11 +93,11 @@ public class MusicPlayer : MonoBehaviour {
     }
 	public float getPlayTime() {
 		
-		if (audio.isPlaying) {
+        //if (audio.isPlaying) {
 			return audio.time; 
-		} else {
-			return 0;
-		}
+        //} else {
+        //    return 0;
+        //}
 	}
 
 	public AudioSource GetAudioSource()

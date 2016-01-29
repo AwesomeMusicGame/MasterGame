@@ -59,13 +59,13 @@ public class RockVisual : MonoBehaviour, ISceneItem {
     }
     //ISceneItem
 
-    private int sampleRate = 1024;
-    private GameObject[] objects; 
+    //private int sampleRate = 1024;
+    //private GameObject[] objects; 
 
-    public GameObject obj;
-    public int NumberObjects = 64; //should be a power of 2 i think
-    public float radius = 1;
-    public float maxLenght = 1;
+    //public GameObject obj;
+    //public int NumberObjects = 64; //should be a power of 2 i think
+    //public float radius = 1;
+    //public float maxLenght = 1;
 
 	// Use this for initialization
 	void Start () {

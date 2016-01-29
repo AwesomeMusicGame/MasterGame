@@ -27,7 +27,7 @@ public class Kolajnice : MonoBehaviour {
 	public GameObject debug;
 
 	private LoadingLevelParameter parameterScript;
-	private MusicPlayer musicPlayer;
+	public MusicPlayer musicPlayer;
 
 	private bool isReadyToPlay = false;
 
@@ -127,7 +127,13 @@ public class Kolajnice : MonoBehaviour {
 				float audioTime = musicPlayer.getPlayTime ();
 				if (audioTime > 0) {
 					elapsedTime = audioTime + countInTime;
-				} else {
+                }
+                else
+                {
+                    if (musicPlayer.audio.clip.length < (Time.time - startTime))
+                    {
+                        Debug.Log("WIN");
+                    }
 					elapsedTime = Time.time - startTime;
 				}
 			}
@@ -167,6 +173,8 @@ public class Kolajnice : MonoBehaviour {
             GameObject tempText = (GameObject) Instantiate(TextPrefab, new Vector3(-i * stretchingFactor, 0, sideDistance), Quaternion.AngleAxis(90, transform.up));
             tempText.transform.parent = this.transform;
             tempText.GetComponent<TextMesh>().text = i.ToString();
+            Color orig = tempText.GetComponent<TextMesh>().color;
+            tempText.GetComponent<TextMesh>().color = new Color(orig.r, orig.g, orig.b, (1 / countInTime) * i);
         }
 
         foreach (float currentBeat in Beats)
@@ -210,9 +218,9 @@ public class Kolajnice : MonoBehaviour {
             temp.transform.parent = this.transform;
             temp.GetComponent<Stretching>().lenght = beatLenght;
 
-			//Draw debug line
-			//GameObject line = (GameObject)Instantiate(debug, new Vector3(lastBeat, 0, sideDistance * row), Quaternion.identity);
-			//line.transform.parent = this.transform;
+            ////Draw debug line
+            //GameObject line = (GameObject)Instantiate(debug, new Vector3(lastBeat, 0, sideDistance * row), Quaternion.identity);
+            //line.transform.parent = this.transform;
 
             lastBeat = modifiedBeat;
         }
