@@ -44,7 +44,7 @@ public class Movement : MonoBehaviour {
     {
         if (kolajnice.GameOver) return;
         // Im getting no input (buttons were released), allow the input to do stuff again
-        if ((Input.GetAxis("Horizontal") == 0) && (Input.GetAxis("Vertical") == 0) && !canMove)
+        if ((Input.GetAxis("Horizontal") == 0) && !canMove)
         {
             canMove = true;
         }
@@ -94,28 +94,28 @@ public class Movement : MonoBehaviour {
             //start skeletal animation
             animator.StartJumpAnimation();
         }
-        //input up
-        if ((Input.GetAxis("Vertical") > 0) && canMove)
-        {
-            this.GetComponentInChildren<WallPuncherScript>().Punch();
+        ////input up
+        //if ((Input.GetAxis("Vertical") > 0) && canMove)
+        //{
+        //    this.GetComponentInChildren<WallPuncherScript>().Punch();
 
-            //start skeletal animation
-            animator.StartPunchAnimation();
+        //    //start skeletal animation
+        //    animator.StartPunchAnimation();
 
-            //disable input
-            canMove = false;
-        }
-        //input down
-        if ((Input.GetAxis("Vertical") < 0) && canMove)
-        {
-            this.GetComponentInChildren<WallPuncherScript>().Slide();
+        //    //disable input
+        //    canMove = false;
+        //}
+        ////input down
+        //if ((Input.GetAxis("Vertical") < 0) && canMove)
+        //{
+        //    this.GetComponentInChildren<WallPuncherScript>().Slide();
 
-            //start skeletal animation
-            animator.StartSlideAnimation();
+        //    //start skeletal animation
+        //    animator.StartSlideAnimation();
 
-            //disable input
-            canMove = false;
-        }
+        //    //disable input
+        //    canMove = false;
+        //}
 
 
         ////held fly key
@@ -133,11 +133,12 @@ public class Movement : MonoBehaviour {
 
     private void DoAnimations()
     {
-        animator.SetLenght(animLength * animSpeedMultipiler * kolajnice.stretchingFactor / 2);
 
         //if not at the position I should be, do animation, used for movement
         if (transform.localPosition.z != targetPosition.z)
         {
+            animator.SetLenght(animLength * animSpeedMultipiler * kolajnice.stretchingFactor / 2);
+
             //lerp between where i should be and where I am by time
             float animLerp = (kolajnice.elapsedTime - startTime) / animLength;
 

@@ -11,7 +11,7 @@ public class RockPunch : PrekazkaBase {
         {
             this.transform.RotateAround(Vector3.forward, 2);
         }
-        if (this.transform.rotation.eulerAngles.z < 90) Destroy(this);
+        //if (this.transform.rotation.eulerAngles.z < 90) Destroy(this);
     }
 
     public override void Kill()
