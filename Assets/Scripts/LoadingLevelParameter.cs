@@ -40,6 +40,11 @@ public class LoadingLevelParameter : MonoBehaviour {
 		Debug.Log (sbsetter);
 	}
 
+	public int getTypeOfBg()
+	{
+		return typeOfSongBackground;
+	}
+
 	public void setSBSetter(int i)
 	{
 		sbsetter = i;

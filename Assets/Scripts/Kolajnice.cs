@@ -23,7 +23,7 @@ public class Kolajnice : MonoBehaviour {
     public float gameOverWait = 0;
     public int pickedScene = 2;
     private bool isEasy = true;
-
+	private int visualPicker;
 	public GameObject debug;
 
 	private LoadingLevelParameter parameterScript;
@@ -64,6 +64,7 @@ public class Kolajnice : MonoBehaviour {
 		if (GameObject.FindGameObjectWithTag ("LoadLevelParameterTag") == null) {
 			Debug.LogWarning ("LoadLevelParameter object not found...");
 			setIsEasyMode(true);
+			visualPicker = 0;
 		} else {
 			parameterScript = GameObject.FindGameObjectWithTag ("LoadLevelParameterTag").GetComponent<LoadingLevelParameter> ();
 			MasterPickedSong = parameterScript.getLoadLevelParameter();
@@ -73,8 +74,9 @@ public class Kolajnice : MonoBehaviour {
 			else
 				setIsEasyMode(false);
 			/////////////////////////////////////////////////////
+			visualPicker = parameterScript.getTypeOfBg();
 		}
-		Debug.Log ("EASY MODE IS >>> " + getIsEasyMode());
+		Debug.Log ("EASY MODE IS >>> " + getIsEasyMode()); //nefunguje z nejakeho dovodu.... 
 		musicPlayer = GameObject.FindGameObjectWithTag ("MusicPlayer").GetComponent<MusicPlayer> ();
 		musicPlayer.pickedSong = MasterPickedSong;
 
@@ -100,7 +102,7 @@ public class Kolajnice : MonoBehaviour {
 
     private void SetVisualPreset()
     {
-        GameObject picked = Instantiate(SceneVariants[pickedScene], transform.position, Quaternion.identity) as GameObject;
+        GameObject picked = Instantiate(SceneVariants[visualPicker], transform.position, Quaternion.identity) as GameObject;
 
         //set veci z presetu
         RenderSettings.skybox = picked.GetComponent<ISceneItem>().skyboxMaterial;
