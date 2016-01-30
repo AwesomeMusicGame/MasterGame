@@ -69,47 +69,47 @@ public class Kolajnice : MonoBehaviour {
 		movementScript = GameObject.FindGameObjectWithTag ("Player").GetComponent<Movement> ();
         PauseText.enabled = false; 
 
-		if (GameObject.FindGameObjectWithTag ("LoadLevelParameterTag") == null) {
-			Debug.LogWarning ("LoadLevelParameter object not found...");
-			setIsEasyMode(true);
-		} else {
-			parameterScript = GameObject.FindGameObjectWithTag ("LoadLevelParameterTag").GetComponent<LoadingLevelParameter> ();
-			MasterPickedSong = parameterScript.getLoadLevelParameter();
-			/////////////////////////////////////////////////////
-			if(parameterScript.getDifficulty() == false)
-				setIsEasyMode(true);
-			else
-				setIsEasyMode(false);
-			/////////////////////////////////////////////////////
+		if (GameObject.FindGameObjectWithTag ("LoadLevelParameterTag") != null) {
+            parameterScript = GameObject.FindGameObjectWithTag("LoadLevelParameterTag").GetComponent<LoadingLevelParameter>();
+            MasterPickedSong = parameterScript.getLoadLevelParameter();
+            /////////////////////////////////////////////////////
+            if (parameterScript.getDifficulty() == false)
+                setIsEasyMode(true);
+            else
+                setIsEasyMode(false);
+            /////////////////////////////////////////////////////
             pickedScene = parameterScript.sbsetter;
-
-            //open file
-            //////////////////////////////////////////
-            string filename = "";
-            switch (MasterPickedSong)
-            {
-                case 1:
-                    Debug.Log("1");
-                    filename = path1;
-                    break;
-                case 2:
-                    Debug.Log("2");
-                    filename = path2;
-                    break;
-                case 3:
-                    Debug.Log("3");
-                    filename = path3;
-                    break;
-                case 0:
-                    Debug.Log(parameterScript.getCustomPath());
-                    Debug.Log("0");
-                    filename = parameterScript.getCustomPath();
-                    break;
-            }
-
-            ImportFromFile(filename);
-            SpawnMap();
+		} else {
+			Debug.LogWarning ("LoadLevelParameter object not found...");
+            setIsEasyMode(true);
         }
+        //open file
+        //////////////////////////////////////////
+        string filename = "";
+        switch (MasterPickedSong)
+        {
+            case 1:
+                Debug.Log("1");
+                filename = path1;
+                break;
+            case 2:
+                Debug.Log("2");
+                filename = path2;
+                break;
+            case 3:
+                Debug.Log("3");
+                filename = path3;
+                break;
+            case 0:
+                Debug.Log(parameterScript.getCustomPath());
+                Debug.Log("0");
+                filename = parameterScript.getCustomPath();
+                break;
+        }
+
+        ImportFromFile(filename);
+        SpawnMap();
+
 		Debug.Log ("EASY MODE IS >>> " + getIsEasyMode()); //nefunguje z nejakeho dovodu.... 
 		musicPlayer = GameObject.FindGameObjectWithTag ("MusicPlayer").GetComponent<MusicPlayer> ();
 		musicPlayer.pickedSong = MasterPickedSong;
