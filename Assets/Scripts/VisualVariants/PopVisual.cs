@@ -40,21 +40,21 @@ public class PopVisual : MonoBehaviour, ISceneItem {
     {
         get
         {
-            return Color.red;
+            return Color.yellow;
         }
     }
     public Color noteColor
     {
         get
         {
-            return Color.red;
+            return Color.yellow;
         }
     }
     public Color countInFontColor
     {
         get
         {
-            return Color.red;
+            return Color.yellow;
         }
     }
     //ISceneItem
