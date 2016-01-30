@@ -19,25 +19,25 @@ public class LoadingLevelParameter : MonoBehaviour {
 
 	void Update()
 	{
-        //switch(sbsetter)
-        //{
-        //case 0: 
-        //    typeOfSongBackground = 0;
-        //    break;
-        //case 1: 
-        //    typeOfSongBackground = 1;
-        //    break;
-        //case 2: 
-        //    typeOfSongBackground = 2;
-        //    break;
-        //case 3: 
-        //    typeOfSongBackground = 3;
-        //    break;
-        //case 4: 
-        //    typeOfSongBackground = 4;
-        //    break;
-        //}
-        //Debug.Log (sbsetter);
+        /*switch(sbsetter)
+        {
+        case 0: 
+            typeOfSongBackground = 0;
+            break;
+        case 1: 
+           typeOfSongBackground = 1;
+            break;
+        case 2: 
+            typeOfSongBackground = 2;
+            break;
+        case 3: 
+            typeOfSongBackground = 3;
+            break;
+        case 4: 
+            typeOfSongBackground = 4;
+            break;
+        }
+        Debug.Log (sbsetter);*/
 	}
 
 	public int getTypeOfBg()

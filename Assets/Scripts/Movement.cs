@@ -20,6 +20,8 @@ public class Movement : MonoBehaviour {
     private float animSpeedMultipiler = 6;
     private float animationRotation = 20;
 
+	private bool stopMovement = false;
+
     private Kolajnice kolajnice;
 
 	// Use this for initialization
@@ -34,10 +36,21 @@ public class Movement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (stopMovement) {
+			DoInput ();
 
-        DoInput();
+			DoAnimations ();
+		}
+	}
 
-        DoAnimations();
+	public bool getIfCharacterCanMove()
+	{
+		return stopMovement;
+	}
+
+	public void setIfCharacterCanMove(bool b)
+	{
+		stopMovement = b;
 	}
 
     private void DoInput()

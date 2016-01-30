@@ -54,10 +54,12 @@ public class Kolajnice : MonoBehaviour {
 	public float currentAudioSourceTime = -5f;
 	public Text PauseText;
 
+	private Movement movementScript;
 
 	// Use this for initialization
     void Start()
     {
+		movementScript = GameObject.FindGameObjectWithTag ("Player").GetComponent<Movement> ();
         PauseText.enabled = false; 
 
 		if (GameObject.FindGameObjectWithTag ("LoadLevelParameterTag") == null) {
@@ -125,6 +127,8 @@ public class Kolajnice : MonoBehaviour {
 			Pause = !Pause;
 			if(Pause)
 			{
+				movementScript.setIfCharacterCanMove(false);
+				Debug.Log("CanMove is " + movementScript.getIfCharacterCanMove());
 				currentAudioSourceTime = musicPlayer.GetAudioSource().time;
 				musicPlayer.GetAudioSource().mute = true;
 				Debug.Log("AUDIO PAUSED IN TIME: " + currentAudioSourceTime);
@@ -132,6 +136,8 @@ public class Kolajnice : MonoBehaviour {
 			}
 			else
 			{
+				movementScript.setIfCharacterCanMove(true);
+				Debug.Log("CanMove is " + movementScript.getIfCharacterCanMove());
 				musicPlayer.GetAudioSource().mute = false;
 				musicPlayer.GetAudioSource().time = currentAudioSourceTime;
 				musicPlayer.GetAudioSource().Play();
@@ -149,9 +155,10 @@ public class Kolajnice : MonoBehaviour {
                 }
                 else
                 {
-                    if (musicPlayer.audio.clip.length < (Time.time - startTime))
+                    if (musicPlayer.audio.clip.length+3 < (Time.time - startTime))
                     {
                         Debug.Log("WIN");
+						Application.LoadLevel(3);
                     }
 					elapsedTime = Time.time - startTime;
 				}
