@@ -32,8 +32,9 @@ public class GUIupdater : MonoBehaviour {
 		//}
 
 		//print (((Time.time - kolajnice.countInTime)));
-		//print ((kolajnice.Beats [kolajnice.Beats.Count - 2]));
-        timeIn.text = FormatTime(kolajnice.musicPlayer.audio.clip.length - kolajnice.SongTime);// FormatTime(kolajnice.elapsedTime - kolajnice.countInTime) + " / " + FormatTime(kolajnice.Beats[kolajnice.Beats.Count - 2]);
+        //print ((kolajnice.Beats [kolajnice.Beats.Count - 2]));
+        if (kolajnice.musicPlayer.audio.clip != null)
+            timeIn.text = FormatTime(kolajnice.musicPlayer.audio.clip.length - kolajnice.SongTime);// FormatTime(kolajnice.elapsedTime - kolajnice.countInTime) + " / " + FormatTime(kolajnice.Beats[kolajnice.Beats.Count - 2]);
 	}
 
     private string FormatTime(float time)

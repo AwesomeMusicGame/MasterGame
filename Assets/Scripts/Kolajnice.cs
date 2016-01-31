@@ -26,6 +26,7 @@ public class Kolajnice : MonoBehaviour {
     public int pickedScene = 2;
     private bool isEasy = true;
 	public GameObject debug;
+    public float winCountOut = 3;
 
 	private LoadingLevelParameter parameterScript;
 	public MusicPlayer musicPlayer;
@@ -58,7 +59,6 @@ public class Kolajnice : MonoBehaviour {
     }
 
 	public bool Pause = false;
-	public float currentAudioSourceTime = -5f;
 	public Text PauseText;
 
 	private Movement movementScript;
@@ -165,9 +165,8 @@ public class Kolajnice : MonoBehaviour {
 			{
 				movementScript.setIfCharacterCanMove(true);
 				Debug.Log("CanMove is " + movementScript.getIfCharacterCanMove());
-				currentAudioSourceTime = musicPlayer.GetAudioSource().time;
 				musicPlayer.GetAudioSource().mute = true;
-				Debug.Log("AUDIO PAUSED IN TIME: " + currentAudioSourceTime);
+				Debug.Log("AUDIO PAUSED IN TIME: " + elapsedTime);
 				PauseText.enabled = true;
 			}
 			else
@@ -182,7 +181,7 @@ public class Kolajnice : MonoBehaviour {
                     Debug.Log("CanMove is " + movementScript.getIfCharacterCanMove());
                     musicPlayer.GetAudioSource().mute = false;
                     float audioTime = musicPlayer.getPlayTime();
-                    musicPlayer.GetAudioSource().time = currentAudioSourceTime;
+                    musicPlayer.GetAudioSource().time = elapsedTime;
                     musicPlayer.GetAudioSource().Play();
                     Debug.Log("AUDIO UNPAUSED");
                     PauseText.enabled = false;
@@ -193,19 +192,35 @@ public class Kolajnice : MonoBehaviour {
 
 		if (startTime != 0) {
 			if (!Pause) {
-				float audioTime = musicPlayer.getPlayTime ();
-				if (audioTime > 0) {
-					elapsedTime = audioTime + countInTime;
-                }
-                else
-                {
-                    if (musicPlayer.audio.clip.length < (Time.time - startTime))
-                    {
-                        Debug.Log("WIN");
-						Application.LoadLevel(3);
-                    }
-					elapsedTime = Time.time - startTime;
-				}
+                float audioTime = musicPlayer.getPlayTime();
+                //if (audioTime > 0) {
+                //    elapsedTime = audioTime + countInTime;
+                //}
+                //else
+                //{
+                //    //if (musicPlayer.audio.clip != null)
+                //    //    if (musicPlayer.audio.clip.length < (Time.time - startTime))
+                //    //    {
+                //    //        Debug.Log("WIN");
+                //    //        Application.LoadLevel(3);
+                //    //    }
+                    elapsedTime = Time.time - startTime;
+                    if (musicPlayer.audio.clip != null)
+                        if (elapsedTime > (musicPlayer.audio.clip.length + countInTime))
+                        {
+                            if (winCountOut <= 0)
+                            {
+                                Application.LoadLevel(3);
+                            }
+                            else 
+                            {
+                                winCountOut -= Time.deltaTime;
+                                Color old =  GameObject.FindGameObjectWithTag("WinFadeOut").GetComponent<Image>().color;
+                                old.a = Mathf.Lerp(1, 0, winCountOut);
+                                GameObject.FindGameObjectWithTag("WinFadeOut").GetComponent<Image>().color = old;
+                            }
+                        }
+                //}
 			}
 
 			if (!GameOver) {
@@ -299,21 +314,28 @@ public class Kolajnice : MonoBehaviour {
     public float getCurrentBeatLength(float time)
     {
 
-        int nextBeatIndex = Beats.FindIndex(x => x > time);
-        float nextBeat, lastBeat;
-
-        if (Beats.Count > (nextBeatIndex - 1))
+        try
         {
-            nextBeat = Beats[nextBeatIndex + 1];
-            lastBeat = Beats[nextBeatIndex];
-        }
-        else
-        {
-            nextBeat = Beats[nextBeatIndex];
-            lastBeat = Beats[nextBeatIndex - 1];
-        }
+            int nextBeatIndex = Beats.FindIndex(x => x > time);
+            float nextBeat, lastBeat;
 
-        return (nextBeat - lastBeat);
+            if (Beats.Count > (nextBeatIndex - 1))
+            {
+                nextBeat = Beats[nextBeatIndex + 1];
+                lastBeat = Beats[nextBeatIndex];
+            }
+            else
+            {
+                nextBeat = Beats[nextBeatIndex];
+                lastBeat = Beats[nextBeatIndex - 1];
+            }
+
+            return (0.4 > (nextBeat - lastBeat)) ? 1f : (nextBeat - lastBeat);
+        }
+        catch (Exception e)
+        {
+            return 1;
+        }
     }
 
     public void ImportFromFile(string filename)
