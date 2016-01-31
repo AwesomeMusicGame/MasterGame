@@ -144,7 +144,10 @@ public class Kolajnice : MonoBehaviour {
         prekazkaPrefab[0] = picked.GetComponent<ISceneItem>().prekazkaPunch;
         prekazkaPrefab[1] = picked.GetComponent<ISceneItem>().prekazkaSlide;
         kockaPrefab.GetComponent<Stretching>().SetMaterial(picked.GetComponent<ISceneItem>().podlahaMaterial);
-        (GameObject.FindGameObjectWithTag("UIText") as GameObject).GetComponent<Text>().color = picked.GetComponent<ISceneItem>().fontColor;
+        foreach(GameObject text in GameObject.FindGameObjectsWithTag("UIText"))
+        {
+            text.GetComponent<Text>().color = picked.GetComponent<ISceneItem>().fontColor;
+        }
         //(GameObject.FindGameObjectWithTag("PlayerMesh") as GameObject).GetComponent<notaSetter>().SetColor(picked.GetComponent<ISceneItem>().noteColor);
         TextPrefab.GetComponent<TextMesh>().color = picked.GetComponent<ISceneItem>().countInFontColor;
     }
