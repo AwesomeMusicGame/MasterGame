@@ -169,18 +169,21 @@ public class Kolajnice : MonoBehaviour {
 			}
 			else
 			{
-				movementScript.setIfCharacterCanMove(false);
-				Debug.Log("CanMove is " + movementScript.getIfCharacterCanMove());
-				musicPlayer.GetAudioSource().mute = false;
-				float audioTime = musicPlayer.getPlayTime ();
-				if(audioTime > 0)
-				{
-					musicPlayer.GetAudioSource().time = currentAudioSourceTime;
-				}
-			
-				musicPlayer.GetAudioSource().Play();
-				Debug.Log ("AUDIO UNPAUSED");
-				PauseText.enabled = false;
+                if (elapsedTime < 5)
+                {
+                    Application.LoadLevel(1);
+                }
+                else
+                {
+                    movementScript.setIfCharacterCanMove(false);
+                    Debug.Log("CanMove is " + movementScript.getIfCharacterCanMove());
+                    musicPlayer.GetAudioSource().mute = false;
+                    float audioTime = musicPlayer.getPlayTime();
+                    musicPlayer.GetAudioSource().time = currentAudioSourceTime;
+                    musicPlayer.GetAudioSource().Play();
+                    Debug.Log("AUDIO UNPAUSED");
+                    PauseText.enabled = false;
+                }
 			}
 		}
 
@@ -193,7 +196,7 @@ public class Kolajnice : MonoBehaviour {
                 }
                 else
                 {
-                    if (musicPlayer.audio.clip.length+3 < (Time.time - startTime))
+                    if (musicPlayer.audio.clip.length < (Time.time - startTime))
                     {
                         Debug.Log("WIN");
 						Application.LoadLevel(3);
