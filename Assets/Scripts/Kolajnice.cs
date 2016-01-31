@@ -148,6 +148,7 @@ public class Kolajnice : MonoBehaviour {
         {
             text.GetComponent<Text>().color = picked.GetComponent<ISceneItem>().fontColor;
         }
+
         //(GameObject.FindGameObjectWithTag("PlayerMesh") as GameObject).GetComponent<notaSetter>().SetColor(picked.GetComponent<ISceneItem>().noteColor);
         TextPrefab.GetComponent<TextMesh>().color = picked.GetComponent<ISceneItem>().countInFontColor;
     }
