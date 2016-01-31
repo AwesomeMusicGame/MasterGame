@@ -107,41 +107,41 @@ public class Movement : MonoBehaviour {
             //start skeletal animation
             animator.StartJumpAnimation();
         }
-        ////input up
-        //if ((Input.GetAxis("Vertical") > 0) && canMove)
-        //{
-        //    this.GetComponentInChildren<WallPuncherScript>().Punch();
+	    //input up
+	    if ((Input.GetAxis("Vertical") > 0) && canMove)
+	    {
+	        this.GetComponentInChildren<WallPuncherScript>().Punch();
 
-        //    //start skeletal animation
-        //    animator.StartPunchAnimation();
+	        //start skeletal animation
+	        animator.StartPunchAnimation();
 
-        //    //disable input
-        //    canMove = false;
-        //}
-        ////input down
-        //if ((Input.GetAxis("Vertical") < 0) && canMove)
-        //{
-        //    this.GetComponentInChildren<WallPuncherScript>().Slide();
+	        //disable input
+	        canMove = false;
+	    }
+	    //input down
+	    if ((Input.GetAxis("Vertical") < 0) && canMove)
+	    {
+	        this.GetComponentInChildren<WallPuncherScript>().Slide();
 
-        //    //start skeletal animation
-        //    animator.StartSlideAnimation();
+	        //start skeletal animation
+	        animator.StartSlideAnimation();
 
-        //    //disable input
-        //    canMove = false;
-        //}
+	        //disable input
+	        canMove = false;
+	    }
 
 
-        ////held fly key
-        //if (Input.GetButton("Fly"))
-        //{
-        //    GetComponent<Rigidbody>().useGravity = false;
-        //    this.transform.position = new Vector3(this.transform.position.x, 2,this.transform.position.z);
-        //}
-        //else
-        //{
-        //    if (!GetComponent<Rigidbody>().useGravity)
-        //        GetComponent<Rigidbody>().useGravity = true;
-        //}
+        //held fly key
+        if (Input.GetButton("Fly"))
+		{
+            GetComponent<Rigidbody>().useGravity = false;
+            this.transform.position = new Vector3(this.transform.position.x, 2,this.transform.position.z);
+        }
+        else
+        {
+            if (!GetComponent<Rigidbody>().useGravity)
+                GetComponent<Rigidbody>().useGravity = true;
+        }
     }
 
     private void DoAnimations()

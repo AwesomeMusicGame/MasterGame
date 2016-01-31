@@ -160,7 +160,7 @@ public class Kolajnice : MonoBehaviour {
 			Pause = !Pause;
 			if(Pause)
 			{
-				movementScript.setIfCharacterCanMove(false);
+				movementScript.setIfCharacterCanMove(true);
 				Debug.Log("CanMove is " + movementScript.getIfCharacterCanMove());
 				currentAudioSourceTime = musicPlayer.GetAudioSource().time;
 				musicPlayer.GetAudioSource().mute = true;
@@ -169,10 +169,15 @@ public class Kolajnice : MonoBehaviour {
 			}
 			else
 			{
-				movementScript.setIfCharacterCanMove(true);
+				movementScript.setIfCharacterCanMove(false);
 				Debug.Log("CanMove is " + movementScript.getIfCharacterCanMove());
 				musicPlayer.GetAudioSource().mute = false;
-				musicPlayer.GetAudioSource().time = currentAudioSourceTime;
+				float audioTime = musicPlayer.getPlayTime ();
+				if(audioTime > 0)
+				{
+					musicPlayer.GetAudioSource().time = currentAudioSourceTime;
+				}
+			
 				musicPlayer.GetAudioSource().Play();
 				Debug.Log ("AUDIO UNPAUSED");
 				PauseText.enabled = false;
