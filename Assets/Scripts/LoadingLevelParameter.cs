@@ -8,7 +8,6 @@ public class LoadingLevelParameter : MonoBehaviour {
     private string customPath;
     private string customSongPath;
 	public bool isHard = false;
-	private int typeOfSongBackground = 0;  //0 space 1 2 3 4 other types
 
 	public int sbsetter = 0;
 
@@ -38,11 +37,6 @@ public class LoadingLevelParameter : MonoBehaviour {
             break;
         }
         Debug.Log (sbsetter);*/
-	}
-
-	public int getTypeOfBg()
-	{
-		return typeOfSongBackground;
 	}
 
 	public void setSBSetter(int i)

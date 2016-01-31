@@ -5,6 +5,8 @@ using System.Collections.Generic;
 
 #if UNITY_EDITOR
 using UnityEditor;
+using System.IO;
+using System;
 #endif
 
 public class Kolajnice : MonoBehaviour {
@@ -29,6 +31,11 @@ public class Kolajnice : MonoBehaviour {
 	public MusicPlayer musicPlayer;
 
 	private bool isReadyToPlay = false;
+
+    private string path1 = @".\Assets\Songs\ThinkDude.txt";
+    private string path2 = @".\Assets\Songs\Tea Blaster.txt";
+    private string path3 = @".\Assets\Songs\Poor-o.txt";
+    private string filename;
 
     private List<float> _beats = new List<float>();
     public List<float> Beats
@@ -62,27 +69,53 @@ public class Kolajnice : MonoBehaviour {
 		movementScript = GameObject.FindGameObjectWithTag ("Player").GetComponent<Movement> ();
         PauseText.enabled = false; 
 
-		if (GameObject.FindGameObjectWithTag ("LoadLevelParameterTag") == null) {
-			Debug.LogWarning ("LoadLevelParameter object not found...");
-			setIsEasyMode(true);
+		if (GameObject.FindGameObjectWithTag ("LoadLevelParameterTag") != null) {
+            parameterScript = GameObject.FindGameObjectWithTag("LoadLevelParameterTag").GetComponent<LoadingLevelParameter>();
+            MasterPickedSong = parameterScript.getLoadLevelParameter();
+            /////////////////////////////////////////////////////
+            if (parameterScript.getDifficulty() == false)
+                setIsEasyMode(true);
+            else
+                setIsEasyMode(false);
+            /////////////////////////////////////////////////////
+            pickedScene = parameterScript.sbsetter;
 		} else {
-			parameterScript = GameObject.FindGameObjectWithTag ("LoadLevelParameterTag").GetComponent<LoadingLevelParameter> ();
-			MasterPickedSong = parameterScript.getLoadLevelParameter();
-			/////////////////////////////////////////////////////
-			if(parameterScript.getDifficulty() == false)
-				setIsEasyMode(true);
-			else
-				setIsEasyMode(false);
-			/////////////////////////////////////////////////////
-            pickedScene = parameterScript.getTypeOfBg();
-		}
+			Debug.LogWarning ("LoadLevelParameter object not found...");
+            setIsEasyMode(true);
+        }
+        //open file
+        //////////////////////////////////////////
+        string filename = "";
+        switch (MasterPickedSong)
+        {
+            case 1:
+                Debug.Log("1");
+                filename = path1;
+                break;
+            case 2:
+                Debug.Log("2");
+                filename = path2;
+                break;
+            case 3:
+                Debug.Log("3");
+                filename = path3;
+                break;
+            case 0:
+                Debug.Log(parameterScript.getCustomPath());
+                Debug.Log("0");
+                filename = parameterScript.getCustomPath();
+                break;
+        }
+
+        ImportFromFile(filename);
+        SpawnMap();
+
 		Debug.Log ("EASY MODE IS >>> " + getIsEasyMode()); //nefunguje z nejakeho dovodu.... 
 		musicPlayer = GameObject.FindGameObjectWithTag ("MusicPlayer").GetComponent<MusicPlayer> ();
 		musicPlayer.pickedSong = MasterPickedSong;
 
         this.transform.position = new Vector3(stretchingFactor * countInTime, 0, -sideDistance);
-		elapsedTime = 0;
-
+        elapsedTime = 0;
         
 //#if UNITY_EDITOR
 //        startTime = -0.01f;
@@ -178,8 +211,8 @@ public class Kolajnice : MonoBehaviour {
 
     public void SpawnMap()
     {
-        SetVisualPreset();
 
+        SetVisualPreset();
         //some inits
         int lastRow = 1;
         int row = lastRow;
@@ -216,18 +249,18 @@ public class Kolajnice : MonoBehaviour {
 
             if (FirstLineDone)
             {
-                row = Random.Range(0, 3);
+                row = UnityEngine.Random.Range(0, 3);
 
                 if (row == lastRow)
                 {
                     if (getIsEasyMode())
                     {
                         while (row == lastRow)
-                            row = Random.Range(0, 3);
+                            row = UnityEngine.Random.Range(0, 3);
                     }
                     else
                     {
-                        int prekazka = Random.Range(0, prekazkaPrefab.Length);
+                        int prekazka = UnityEngine.Random.Range(0, prekazkaPrefab.Length);
                         GameObject tempPrekazka = (GameObject)Instantiate(prekazkaPrefab[prekazka], new Vector3(lastBeat + beatLenght / 4, 0, sideDistance * row), Quaternion.identity);
                         tempPrekazka.transform.parent = this.transform;
                     }
@@ -272,21 +305,46 @@ public class Kolajnice : MonoBehaviour {
         return (nextBeat - lastBeat);
     }
 
-    public float getClosestBeatTime()
+    public void ImportFromFile(string filename)
     {
+        List<float> tempList = new List<float>();
+        try
+        {
+            //need to be fixed 
+            StreamReader reader = new StreamReader(filename);
+            string input = reader.ReadToEnd();
+            if (input != string.Empty)
+            {
+                string[] parts = input.Split('\n');
+                foreach (string part in parts)
+                {
+                    float tempFloat;
+                    float.TryParse(part, out tempFloat);
+                    tempList.Add(tempFloat);
+                    //                    Debug.Log(tempFloat + " parsed from: " + part);
+                }
+                //                kolajniceScript.DebugWriteAllBeats();
 
-        int nextBeatIndex = Beats.FindIndex(x => x >= SongTime);
-        int lastBeatIndex = Beats.FindIndex(x => x <= SongTime);
-        int resultIndex = (Mathf.Abs(SongTime - nextBeatIndex) > Mathf.Abs(SongTime - lastBeatIndex)) ? lastBeatIndex : nextBeatIndex;
-        if (resultIndex < 0 || resultIndex >= Beats.Count)
-            resultIndex = 0;
-        return Beats[resultIndex];
+                Beats = tempList;
+                reader.Close();
+            }
+            else
+            {
+                Debug.Log("No lvl data loaded from the file...string is empty");
+            }
+        }
+        catch (ArgumentNullException e)
+        {
+            Debug.Log("Null filename.\n" + e.ToString());
+        }
+        catch (NullReferenceException e)
+        {
+            Debug.Log("Null Reference Exception.\n" + e.ToString());
+        }
+        catch (FileNotFoundException e)
+        {
+            Debug.Log("No lvl data loaded from the file...file is missing\n" + e.ToString());
+        }
     }
-
-	/*//choosing lvl from main menu
-	public void ChooseLevel(int level)
-	{
-		return level;
-	}*/
 
 }

@@ -43,8 +43,7 @@ public class MusicPlayer : MonoBehaviour {
                 break;
             case 0:
                 //Debug.Log(load.getCustomSongPath());
-                StartCoroutine(loadMp3(load.getCustomSongPath()));
-                
+                StartCoroutine(loadMp3(load.getCustomSongPath()));              
                 break;
         }
     }
@@ -80,6 +79,8 @@ public class MusicPlayer : MonoBehaviour {
 
         customSong = a;
         audio.clip = customSong;
+        yield return new WaitForSeconds(kolajnice.countInTime);
+        //kolajnice. += kolajnice.countInTime;
         audio.Play();
         //isReady = true;
     }
