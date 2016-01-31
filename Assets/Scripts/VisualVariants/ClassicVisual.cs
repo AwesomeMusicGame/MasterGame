@@ -69,6 +69,7 @@ public class ClassicVisual : MonoBehaviour, ISceneItem
 
     void Start()
     {
+        ParticleSystem jolo = this.GetComponent<ParticleSystem>(); 
         for (int i = 0; i < numberOfObjects; i++)
         {
             if ((i < numberOfObjects / 2 || i > numberOfObjects / 2) &&
