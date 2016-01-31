@@ -8,6 +8,7 @@ public class ElectronicVisual : MonoBehaviour, ISceneItem
     public Material skybox;
     public GameObject punch_prekazka;
     public GameObject slide_prekazka;
+	
     public Material podlahaMaterial
     {
         get
@@ -40,21 +41,21 @@ public class ElectronicVisual : MonoBehaviour, ISceneItem
     {
         get
         {
-            return Color.red;
+			return new Color32(168,255,168,255);
         }
     }
     public Color noteColor
     {
         get
         {
-            return Color.white;
+			return new Color32(168,255,168,255);
         }
     }
     public Color countInFontColor
     {
         get
         {
-            return Color.red;
+			return new Color32(168,255,168,255);
         }
     }
     //ISceneItem
@@ -71,13 +72,13 @@ public class ElectronicVisual : MonoBehaviour, ISceneItem
     {
         for (int i = 0; i < numberOfObjects; i++)
         {
-            if ((i < numberOfObjects / 2 || i > numberOfObjects / 2) &&
+            if ((i < numberOfObjects / 2 || i > numberOfObjects / 4) &&
                (i < (numberOfObjects / 2) - 1 || i > (numberOfObjects / 2) + 1) &&
                (i < (numberOfObjects / 2) - 2 || i > (numberOfObjects / 2) + 2) &&
                (i < (numberOfObjects / 2) - 3 || i > (numberOfObjects / 2) + 3))
             {
                 float angle = i * Mathf.PI * 1 / numberOfObjects;
-                Vector3 pos = new Vector3(Mathf.Sin(angle) + 0.2f, 0, Mathf.Cos(angle) * Mathf.PI / 8) * radius;
+                Vector3 pos = new Vector3(Mathf.Sin(angle) + 0.2f, 0, Mathf.Cos(angle) * Mathf.PI / 4f) * radius;
                 GameObject temp = Instantiate(prefab, pos, Quaternion.identity) as GameObject;
                 temp.transform.parent = this.transform;
             }
@@ -87,12 +88,12 @@ public class ElectronicVisual : MonoBehaviour, ISceneItem
 
     void Update()
     {
-        //float[] spectrum = AudioListener.GetSpectrumData(1024, 0, FFTWindow.Hamming);
-        //for (int i = 0; i < numberOfObjects - 7; i++)
-        //{
-        //    Vector3 previousScale = cubes[i].transform.localScale;
-        //    previousScale.y = spectrum[i] * 5;
-        //    cubes[i].transform.localScale = previousScale;
-        //}
+        float[] spectrum = AudioListener.GetSpectrumData(1024, 0, FFTWindow.Hamming);
+        for (int i = 0; i < numberOfObjects - 7; i++)
+        {
+            Vector3 previousScale = cubes[i].transform.localScale;
+            previousScale.y = spectrum[i] * 8;
+            cubes[i].transform.localScale = previousScale;
+        }
     }
 }
