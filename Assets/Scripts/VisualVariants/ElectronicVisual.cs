@@ -8,7 +8,7 @@ public class ElectronicVisual : MonoBehaviour, ISceneItem
     public Material skybox;
     public GameObject punch_prekazka;
     public GameObject slide_prekazka;
-	
+
     public Material podlahaMaterial
     {
         get
@@ -70,6 +70,7 @@ public class ElectronicVisual : MonoBehaviour, ISceneItem
 
     void Start()
     {
+
         for (int i = 0; i < numberOfObjects; i++)
         {
             if ((i < numberOfObjects / 2 || i > numberOfObjects / 4) &&
@@ -84,7 +85,7 @@ public class ElectronicVisual : MonoBehaviour, ISceneItem
             }
         }
         cubes = GameObject.FindGameObjectsWithTag("Cubes");
-    }
+	}
 
     void Update()
     {
