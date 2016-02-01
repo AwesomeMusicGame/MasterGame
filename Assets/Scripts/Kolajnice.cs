@@ -179,7 +179,7 @@ public class Kolajnice : MonoBehaviour {
                     Application.LoadLevel(1);
                 }
                 else
-                {
+                {                    
                     movementScript.setIfCharacterCanMove(false);
                     Debug.Log("CanMove is " + movementScript.getIfCharacterCanMove());
 					musicPlayer.GetAudioSource().mute = false;
@@ -194,35 +194,34 @@ public class Kolajnice : MonoBehaviour {
 		if (startTime != 0) {
 			if (!Pause) {
                 float audioTime = musicPlayer.getPlayTime();
-                if (audioTime > 0) {
+                if (audioTime > 0)
+                {
                     elapsedTime = audioTime + countInTime;
                 }
-                else
-                {
-                    if (musicPlayer.audio.clip != null)
-                        if (musicPlayer.audio.clip.length < (Time.time - startTime))
-                        {
-                            Debug.Log("WIN");
-                            Application.LoadLevel(3);
-                        }
+                //if (musicPlayer.audio.clip != null)
+                //    if (elapsedTime < (Time.time - startTime))
+                //    {
+                //        Debug.Log("WIN");
+                //        Application.LoadLevel(3);
+                //    }
                     elapsedTime = Time.time - startTime;
-                    /*if (musicPlayer.audio.clip != null)
+                    if (musicPlayer.audio.clip != null)
                         if (elapsedTime > (musicPlayer.audio.clip.length + countInTime))
                         {
                             if (winCountOut <= 0)
                             {
                                 Application.LoadLevel(3);
                             }
-                            else 
+                            else
                             {
                                 musicPlayer.audio.mute = true;
                                 winCountOut -= Time.deltaTime;
-                                Color old =  GameObject.FindGameObjectWithTag("WinFadeOut").GetComponent<Image>().color;
+                                Color old = GameObject.FindGameObjectWithTag("WinFadeOut").GetComponent<Image>().color;
                                 old.a = Mathf.Lerp(1, 0, winCountOut);
                                 GameObject.FindGameObjectWithTag("WinFadeOut").GetComponent<Image>().color = old;
                             }
-                        }*/
-                }
+                        }
+                
 			}
 
 			if (!GameOver) {
