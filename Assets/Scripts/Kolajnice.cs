@@ -215,6 +215,7 @@ public class Kolajnice : MonoBehaviour {
                             }
                             else 
                             {
+                                musicPlayer.audio.mute = true;
                                 winCountOut -= Time.deltaTime;
                                 Color old =  GameObject.FindGameObjectWithTag("WinFadeOut").GetComponent<Image>().color;
                                 old.a = Mathf.Lerp(1, 0, winCountOut);
