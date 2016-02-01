@@ -194,19 +194,19 @@ public class Kolajnice : MonoBehaviour {
 		if (startTime != 0) {
 			if (!Pause) {
                 float audioTime = musicPlayer.getPlayTime();
-                //if (audioTime > 0) {
-                //    elapsedTime = audioTime + countInTime;
-                //}
-                //else
-                //{
-                //    //if (musicPlayer.audio.clip != null)
-                //    //    if (musicPlayer.audio.clip.length < (Time.time - startTime))
-                //    //    {
-                //    //        Debug.Log("WIN");
-                //    //        Application.LoadLevel(3);
-                //    //    }
-                    elapsedTime = Time.time - startTime;
+                if (audioTime > 0) {
+                    elapsedTime = audioTime + countInTime;
+                }
+                else
+                {
                     if (musicPlayer.audio.clip != null)
+                        if (musicPlayer.audio.clip.length < (Time.time - startTime))
+                        {
+                            Debug.Log("WIN");
+                            Application.LoadLevel(3);
+                        }
+                    elapsedTime = Time.time - startTime;
+                    /*if (musicPlayer.audio.clip != null)
                         if (elapsedTime > (musicPlayer.audio.clip.length + countInTime))
                         {
                             if (winCountOut <= 0)
@@ -220,8 +220,8 @@ public class Kolajnice : MonoBehaviour {
                                 old.a = Mathf.Lerp(1, 0, winCountOut);
                                 GameObject.FindGameObjectWithTag("WinFadeOut").GetComponent<Image>().color = old;
                             }
-                        }
-                //}
+                        }*/
+                }
 			}
 
 			if (!GameOver) {
