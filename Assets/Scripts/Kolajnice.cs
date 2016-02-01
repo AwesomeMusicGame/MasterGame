@@ -62,6 +62,8 @@ public class Kolajnice : MonoBehaviour {
 	public Text PauseText;
 
 	private Movement movementScript;
+	public float currentAudioSourceTime = -5f;
+
 
 	// Use this for initialization
     void Start()
@@ -165,8 +167,9 @@ public class Kolajnice : MonoBehaviour {
 			{
 				movementScript.setIfCharacterCanMove(true);
 				Debug.Log("CanMove is " + movementScript.getIfCharacterCanMove());
+				currentAudioSourceTime = musicPlayer.GetAudioSource().time;
 				musicPlayer.GetAudioSource().mute = true;
-				Debug.Log("AUDIO PAUSED IN TIME: " + elapsedTime);
+				Debug.Log("AUDIO PAUSED IN TIME: " + currentAudioSourceTime);
 				PauseText.enabled = true;
 			}
 			else
@@ -179,16 +182,14 @@ public class Kolajnice : MonoBehaviour {
                 {
                     movementScript.setIfCharacterCanMove(false);
                     Debug.Log("CanMove is " + movementScript.getIfCharacterCanMove());
-                    musicPlayer.GetAudioSource().mute = false;
-                    float audioTime = musicPlayer.getPlayTime();
-                    musicPlayer.GetAudioSource().time = elapsedTime;
+					musicPlayer.GetAudioSource().mute = false;
+					musicPlayer.GetAudioSource().time = currentAudioSourceTime;
                     musicPlayer.GetAudioSource().Play();
-                    Debug.Log("AUDIO UNPAUSED");
+                    Debug.Log("AUDIO UNPAUSED IN TIME: " + currentAudioSourceTime);
                     PauseText.enabled = false;
                 }
 			}
 		}
-
 
 		if (startTime != 0) {
 			if (!Pause) {

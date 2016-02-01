@@ -1,12 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\VisualVariants\SpaceVisual.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Kolajnice.cs">
     <Files>
+      <File FileName="Assets\Scripts\VisualVariants\ElectronicVisual.cs" Line="58" Column="32" />
       <File FileName="Assets\Scripts\VisualVariants\RockVisual.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\VisualVariants\ElectronicVisual.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Kolajnice.cs" Line="362" Column="1" />
-      <File FileName="Assets\Scripts\VisualVariants\SpaceVisual.cs" Line="50" Column="51" />
-      <File FileName="Assets\Scripts\VisualVariants\PopVisual.cs" Line="69" Column="1" />
+      <File FileName="Assets\Scripts\Kolajnice.cs" Line="195" Column="14" />
+      <File FileName="Assets\Scripts\VisualVariants\SpaceVisual.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\VisualVariants\PopVisual.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
