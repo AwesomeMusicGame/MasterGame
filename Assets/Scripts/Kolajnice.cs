@@ -3,11 +3,11 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-#if UNITY_EDITOR
-using UnityEditor;
+//#if UNITY_EDITO
+//using UnityEditor;
 using System.IO;
 using System;
-#endif
+//&#endif
 
 public class Kolajnice : MonoBehaviour {
 
