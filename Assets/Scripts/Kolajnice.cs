@@ -184,6 +184,7 @@ public class Kolajnice : MonoBehaviour {
                     Debug.Log("CanMove is " + movementScript.getIfCharacterCanMove());
 					musicPlayer.GetAudioSource().mute = false;
 					musicPlayer.GetAudioSource().time = currentAudioSourceTime;
+                    elapsedTime = currentAudioSourceTime + countInTime;
                     musicPlayer.GetAudioSource().Play();
                     Debug.Log("AUDIO UNPAUSED IN TIME: " + currentAudioSourceTime);
                     PauseText.enabled = false;
@@ -221,10 +222,13 @@ public class Kolajnice : MonoBehaviour {
                                 GameObject.FindGameObjectWithTag("WinFadeOut").GetComponent<Image>().color = old;
                             }
                         }
-                
-			}
+
+            }
 
 			if (!GameOver) {
+                if (Pause)
+                    startTime += Time.deltaTime;
+
 				this.transform.position = new Vector3 (-(elapsedTime - countInTime) * stretchingFactor, 0, -sideDistance);
 			} else {
 				if (gameOverWait > 0)
