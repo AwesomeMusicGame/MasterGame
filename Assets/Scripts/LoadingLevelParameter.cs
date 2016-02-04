@@ -9,7 +9,7 @@ public class LoadingLevelParameter : MonoBehaviour {
     private string customSongPath;
 	public bool isHard = false;
 
-	public int sbsetter = 1;
+	public int sbsetter = 0;
 
 	void Awake() {
 		tempp = loadLevelParamerer;
